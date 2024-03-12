@@ -1,0 +1,4 @@
+[0.000000] (-) TimerEvent: {}
+[0.000630] (-) JobUnselected: {'identifier': 'MS_3'}
+[0.000779] (-) JobUnselected: {'identifier': 'ms_3'}
+[0.000834] (-) EventReactorShutdown: {}

@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: MS-3
+Version: 0.0.1
+Summary: Package based of the milestone 3 document of MSD
+Maintainer: gabriel
+Maintainer-email: gabrielaadl02@gmail.com
+License: Apache-2.0
+Requires-Dist: setuptools

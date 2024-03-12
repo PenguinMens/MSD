@@ -1,0 +1,42 @@
+[1.444s] Invoking command in '/home/gabriel/MSD/packages/src/ms_3': PYTHONPATH=/home/gabriel/MSD/packages/build/ms_3/prefix_override:/home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w:JAVA_HOME/p /usr/bin/python3 setup.py egg_info --egg-base ../../build/ms_3 build --build-base /home/gabriel/MSD/packages/build/ms_3/build install --record /home/gabriel/MSD/packages/build/ms_3/install.log --single-version-externally-managed
+[1.692s] running egg_info
+[1.710s] writing ../../build/ms_3/ms_3.egg-info/PKG-INFO
+[1.711s] writing dependency_links to ../../build/ms_3/ms_3.egg-info/dependency_links.txt
+[1.711s] writing entry points to ../../build/ms_3/ms_3.egg-info/entry_points.txt
+[1.711s] writing requirements to ../../build/ms_3/ms_3.egg-info/requires.txt
+[1.712s] writing top-level names to ../../build/ms_3/ms_3.egg-info/top_level.txt
+[1.747s] reading manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[1.748s] writing manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[1.749s] running build
+[1.749s] running build_py
+[1.749s] copying ms_3/leader.py -> /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3
+[1.749s] copying ms_3/follower.py -> /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3
+[1.749s] running install
+[1.749s] /home/gabriel/.local/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[1.750s] !!
+[1.750s] 
+[1.750s]         ********************************************************************************
+[1.750s]         Please avoid running ``setup.py`` directly.
+[1.750s]         Instead, use pypa/build, pypa/installer or other
+[1.750s]         standards-based tools.
+[1.750s] 
+[1.750s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[1.750s]         ********************************************************************************
+[1.750s] 
+[1.750s] !!
+[1.750s]   self.initialize_options()
+[1.754s] running install_lib
+[1.772s] copying /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3/leader.py -> /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3
+[1.772s] copying /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3/follower.py -> /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3
+[1.773s] byte-compiling /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3/leader.py to leader.cpython-310.pyc
+[1.773s] byte-compiling /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3/follower.py to follower.cpython-310.pyc
+[1.774s] running install_data
+[1.792s] running install_egg_info
+[1.812s] removing '/home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3-0.0.1-py3.10.egg-info' (and everything under it)
+[1.812s] Copying ../../build/ms_3/ms_3.egg-info to /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3-0.0.1-py3.10.egg-info
+[1.813s] running install_scripts
+[1.965s] Installing follower script to /home/gabriel/MSD/packages/install/ms_3/lib/ms_3
+[1.965s] Installing leader script to /home/gabriel/MSD/packages/install/ms_3/lib/ms_3
+[1.965s] Installing milestone_3 script to /home/gabriel/MSD/packages/install/ms_3/lib/ms_3
+[1.966s] writing list of installed files to '/home/gabriel/MSD/packages/build/ms_3/install.log'
+[2.050s] Invoked command in '/home/gabriel/MSD/packages/src/ms_3' returned '0': PYTHONPATH=/home/gabriel/MSD/packages/build/ms_3/prefix_override:/home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w:JAVA_HOME/p /usr/bin/python3 setup.py egg_info --egg-base ../../build/ms_3 build --build-base /home/gabriel/MSD/packages/build/ms_3/build install --record /home/gabriel/MSD/packages/build/ms_3/install.log --single-version-externally-managed

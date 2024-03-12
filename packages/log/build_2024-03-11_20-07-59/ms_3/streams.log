@@ -1,0 +1,50 @@
+[1.903s] Invoking command in '/home/gabriel/MSD/packages/src/ms_3': PYTHONPATH=/home/gabriel/MSD/packages/build/ms_3/prefix_override:/home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/ms_3 build --build-base /home/gabriel/MSD/packages/build/ms_3/build install --record /home/gabriel/MSD/packages/build/ms_3/install.log --single-version-externally-managed
+[2.232s] running egg_info
+[2.234s] creating ../../build/ms_3/ms_3.egg-info
+[2.260s] writing ../../build/ms_3/ms_3.egg-info/PKG-INFO
+[2.260s] writing dependency_links to ../../build/ms_3/ms_3.egg-info/dependency_links.txt
+[2.261s] writing entry points to ../../build/ms_3/ms_3.egg-info/entry_points.txt
+[2.261s] writing requirements to ../../build/ms_3/ms_3.egg-info/requires.txt
+[2.261s] writing top-level names to ../../build/ms_3/ms_3.egg-info/top_level.txt
+[2.261s] writing manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[2.303s] reading manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[2.304s] writing manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[2.304s] running build
+[2.304s] running build_py
+[2.304s] creating /home/gabriel/MSD/packages/build/ms_3/build
+[2.304s] creating /home/gabriel/MSD/packages/build/ms_3/build/lib
+[2.305s] creating /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3
+[2.305s] copying ms_3/__init__.py -> /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3
+[2.305s] copying ms_3/milestone_3.py -> /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3
+[2.306s] running install
+[2.306s] /home/gabriel/.local/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[2.306s] !!
+[2.306s] 
+[2.306s]         ********************************************************************************
+[2.306s]         Please avoid running ``setup.py`` directly.
+[2.306s]         Instead, use pypa/build, pypa/installer or other
+[2.306s]         standards-based tools.
+[2.306s] 
+[2.306s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[2.306s]         ********************************************************************************
+[2.306s] 
+[2.306s] !!
+[2.307s]   self.initialize_options()
+[2.311s] running install_lib
+[2.338s] creating /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3
+[2.338s] copying /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3/__init__.py -> /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3
+[2.338s] copying /home/gabriel/MSD/packages/build/ms_3/build/lib/ms_3/milestone_3.py -> /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3
+[2.339s] byte-compiling /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3/__init__.py to __init__.cpython-310.pyc
+[2.340s] byte-compiling /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3/milestone_3.py to milestone_3.cpython-310.pyc
+[2.340s] running install_data
+[2.358s] creating /home/gabriel/MSD/packages/install/ms_3/share/ament_index
+[2.358s] creating /home/gabriel/MSD/packages/install/ms_3/share/ament_index/resource_index
+[2.359s] creating /home/gabriel/MSD/packages/install/ms_3/share/ament_index/resource_index/packages
+[2.359s] copying resource/ms_3 -> /home/gabriel/MSD/packages/install/ms_3/share/ament_index/resource_index/packages
+[2.359s] copying package.xml -> /home/gabriel/MSD/packages/install/ms_3/share/ms_3
+[2.360s] running install_egg_info
+[2.380s] Copying ../../build/ms_3/ms_3.egg-info to /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3-0.0.0-py3.10.egg-info
+[2.381s] running install_scripts
+[2.544s] Installing milestone_3 script to /home/gabriel/MSD/packages/install/ms_3/lib/ms_3
+[2.545s] writing list of installed files to '/home/gabriel/MSD/packages/build/ms_3/install.log'
+[2.639s] Invoked command in '/home/gabriel/MSD/packages/src/ms_3' returned '0': PYTHONPATH=/home/gabriel/MSD/packages/build/ms_3/prefix_override:/home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/ms_3 build --build-base /home/gabriel/MSD/packages/build/ms_3/build install --record /home/gabriel/MSD/packages/build/ms_3/install.log --single-version-externally-managed

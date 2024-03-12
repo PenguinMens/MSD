@@ -1,0 +1,63 @@
+[0.000000] (-) TimerEvent: {}
+[0.000195] (-) JobUnselected: {'identifier': 'MS_3'}
+[0.000547] (ms_3) JobQueued: {'identifier': 'ms_3', 'dependencies': OrderedDict()}
+[0.000615] (ms_3) JobStarted: {'identifier': 'ms_3'}
+[0.098558] (-) TimerEvent: {}
+[0.199113] (-) TimerEvent: {}
+[0.299497] (-) TimerEvent: {}
+[0.399824] (-) TimerEvent: {}
+[0.500186] (-) TimerEvent: {}
+[0.600520] (-) TimerEvent: {}
+[0.700852] (-) TimerEvent: {}
+[0.801202] (-) TimerEvent: {}
+[0.816430] (ms_3) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'develop', '--editable', '--build-directory', '/home/gabriel/MSD/packages/build/ms_3/build', '--no-deps', 'install_data'], 'cwd': '/home/gabriel/MSD/packages/build/ms_3', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'gabriel', 'GIT_ASKPASS': '/home/gabriel/.vscode-server/bin/1e790d77f81672c49be070e04474901747115651/extensions/git/dist/askpass.sh', 'SHLVL': '2', 'MOTD_SHOWN': 'update-motd', 'HOME': '/home/gabriel', 'OLDPWD': '/home/gabriel/MSD', 'TERM_PROGRAM_VERSION': '1.87.1', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-a7cc4062-e1ce-4554-a125-49badbdfb6e6.sock', 'VSCODE_GIT_ASKPASS_MAIN': '/home/gabriel/.vscode-server/bin/1e790d77f81672c49be070e04474901747115651/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/gabriel/.vscode-server/bin/1e790d77f81672c49be070e04474901747115651/node', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'WSL_DISTRO_NAME': 'Ubuntu', 'PICO_TOOLCHAIN_PATH': '...', 'WAYLAND_DISPLAY': 'wayland-0', 'LOGNAME': 'gabriel', 'NAME': 'Code', 'WSL_INTEROP': '/run/WSL/1294_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'TERM': 'xterm-256color', 'PATH': '/home/gabriel/.vscode-server/bin/1e790d77f81672c49be070e04474901747115651/bin/remote-cli:/home/gabriel/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.0.14.0_x64__8wekyb3d8bbwe:/mnt/c/Program Files/Basler/pylon 5/Runtime/Win32/:/mnt/c/Program Files/Basler/pylon 5/Runtime/x64/:/mnt/c/Users/PenguinMen/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/PenguinMen/AppData/Local/Programs/Python/Python310/:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.6/bin:/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.6/libnvvp:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/iCLS/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/IPT:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Program Files/Microchip/xc8/v2.31/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Microsoft SQL Server/120/Tools/Binn/:/mnt/c/Program Files/Java/jdk-17.0.2/bin:/mnt/a/apache-maven-3.8.4/bin:/mnt/c/Program Files/NVIDIA Corporation/Nsight Compute 2022.1.1/:/mnt/a/esp32/esp-idf/tools:/mnt/a/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/CMake/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/a/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/Common Files/OMRON_SENTECH/GenICam/v3_2/bin/:/mnt/c/Program Files/Common Files/OMRON_SENTECH/StApi/v1_1/:/mnt/c/Program Files (x86)/Common Files/OMRON_SENTECH/GenICam/v3_2/bin/:/mnt/c/Program Files (x86)/Common Files/OMRON_SENTECH/StApi/v1_1/:/mnt/a/DeltaTau/PowerPMACSim/opt/ppmac/MinGW/bin:/mnt/c/Program Files/usbipd-win/:/mnt/a/VSARM/armcc/10 2020-q4-major/bin:/mnt/c/Users/PenguinMen/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/PenguinMen/AppData/Local/Programs/Python/Python310/:/mnt/c/Program Files/Java/jdk-17.0.2/bin:/mnt/a/Users/PenguinMen/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/e/University/miktek/miktex/bin/x64/:/mnt/a/VSARM/mingw/mingw32/bin:/mnt/a/esp32/esp-idf/tools:/mnt/c/Users/PenguinMen/AppData/Roaming/npm:/mnt/c/Users/PenguinMen/AppData/Local/Microsoft/WindowsApps:/mnt/a/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:/mnt/c/Users/PenguinMen/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-87fcbfb8fc.sock', 'TERM_PROGRAM': 'vscode', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'JAVA_HOME': '/mnt/c/Program Files/Java/jdk-17.0.2', 'PWD': '/home/gabriel/MSD/packages/build/ms_3', 'PICO_SDK_PATH': '/home/gabriel/pico-sdk', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'WSLENV': 'ELECTRON_RUN_AS_NODE/w:JAVA_HOME/p', 'PYTHONPATH': '/home/gabriel/MSD/packages/build/ms_3/prefix_override:/home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages:'}, 'shell': False}
+[0.901335] (-) TimerEvent: {}
+[1.001651] (-) TimerEvent: {}
+[1.053085] (ms_3) StdoutLine: {'line': b'running develop\n'}
+[1.053461] (ms_3) StderrLine: {'line': b'/home/gabriel/.local/lib/python3.10/site-packages/setuptools/command/develop.py:40: EasyInstallDeprecationWarning: easy_install command is deprecated.\n'}
+[1.053598] (ms_3) StderrLine: {'line': b'!!\n'}
+[1.053661] (ms_3) StderrLine: {'line': b'\n'}
+[1.053718] (ms_3) StderrLine: {'line': b'        ********************************************************************************\n'}
+[1.053775] (ms_3) StderrLine: {'line': b'        Please avoid running ``setup.py`` and ``easy_install``.\n'}
+[1.053829] (ms_3) StderrLine: {'line': b'        Instead, use pypa/build, pypa/installer or other\n'}
+[1.053883] (ms_3) StderrLine: {'line': b'        standards-based tools.\n'}
+[1.053936] (ms_3) StderrLine: {'line': b'\n'}
+[1.053989] (ms_3) StderrLine: {'line': b'        See https://github.com/pypa/setuptools/issues/917 for details.\n'}
+[1.054048] (ms_3) StderrLine: {'line': b'        ********************************************************************************\n'}
+[1.054101] (ms_3) StderrLine: {'line': b'\n'}
+[1.054153] (ms_3) StderrLine: {'line': b'!!\n'}
+[1.054205] (ms_3) StderrLine: {'line': b'  easy_install.initialize_options(self)\n'}
+[1.073222] (ms_3) StderrLine: {'line': b'/home/gabriel/.local/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.\n'}
+[1.073412] (ms_3) StderrLine: {'line': b'!!\n'}
+[1.073476] (ms_3) StderrLine: {'line': b'\n'}
+[1.073532] (ms_3) StderrLine: {'line': b'        ********************************************************************************\n'}
+[1.073593] (ms_3) StderrLine: {'line': b'        Please avoid running ``setup.py`` directly.\n'}
+[1.073649] (ms_3) StderrLine: {'line': b'        Instead, use pypa/build, pypa/installer or other\n'}
+[1.073701] (ms_3) StderrLine: {'line': b'        standards-based tools.\n'}
+[1.073753] (ms_3) StderrLine: {'line': b'\n'}
+[1.073804] (ms_3) StderrLine: {'line': b'        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.\n'}
+[1.073856] (ms_3) StderrLine: {'line': b'        ********************************************************************************\n'}
+[1.073908] (ms_3) StderrLine: {'line': b'\n'}
+[1.073960] (ms_3) StderrLine: {'line': b'!!\n'}
+[1.074012] (ms_3) StderrLine: {'line': b'  self.initialize_options()\n'}
+[1.101803] (-) TimerEvent: {}
+[1.182853] (ms_3) StdoutLine: {'line': b'running egg_info\n'}
+[1.194880] (ms_3) StdoutLine: {'line': b'writing ms_3.egg-info/PKG-INFO\n'}
+[1.195335] (ms_3) StdoutLine: {'line': b'writing dependency_links to ms_3.egg-info/dependency_links.txt\n'}
+[1.195635] (ms_3) StdoutLine: {'line': b'writing entry points to ms_3.egg-info/entry_points.txt\n'}
+[1.195864] (ms_3) StdoutLine: {'line': b'writing requirements to ms_3.egg-info/requires.txt\n'}
+[1.195939] (ms_3) StdoutLine: {'line': b'writing top-level names to ms_3.egg-info/top_level.txt\n'}
+[1.201953] (-) TimerEvent: {}
+[1.215528] (ms_3) StdoutLine: {'line': b"reading manifest file 'ms_3.egg-info/SOURCES.txt'\n"}
+[1.216262] (ms_3) StdoutLine: {'line': b"writing manifest file 'ms_3.egg-info/SOURCES.txt'\n"}
+[1.227332] (ms_3) StdoutLine: {'line': b'running build_ext\n'}
+[1.227523] (ms_3) StdoutLine: {'line': b'Creating /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms-3.egg-link (link to .)\n'}
+[1.228584] (ms_3) StdoutLine: {'line': b'Installing leader script to /home/gabriel/MSD/packages/install/ms_3/lib/ms_3\n'}
+[1.228832] (ms_3) StdoutLine: {'line': b'Installing milestone_3 script to /home/gabriel/MSD/packages/install/ms_3/lib/ms_3\n'}
+[1.229211] (ms_3) StdoutLine: {'line': b'\n'}
+[1.229382] (ms_3) StdoutLine: {'line': b'Installed /home/gabriel/MSD/packages/build/ms_3\n'}
+[1.229611] (ms_3) StdoutLine: {'line': b'running install_data\n'}
+[1.258016] (ms_3) CommandEnded: {'returncode': 0}
+[1.302523] (-) TimerEvent: {}
+[1.304970] (ms_3) JobEnded: {'identifier': 'ms_3', 'rc': 0}
+[1.306090] (-) EventReactorShutdown: {}

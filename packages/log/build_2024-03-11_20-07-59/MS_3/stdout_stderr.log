@@ -1,0 +1,54 @@
+running egg_info
+creating ../../build/MS_3/MS_3.egg-info
+writing ../../build/MS_3/MS_3.egg-info/PKG-INFO
+writing dependency_links to ../../build/MS_3/MS_3.egg-info/dependency_links.txt
+writing entry points to ../../build/MS_3/MS_3.egg-info/entry_points.txt
+writing requirements to ../../build/MS_3/MS_3.egg-info/requires.txt
+writing top-level names to ../../build/MS_3/MS_3.egg-info/top_level.txt
+writing manifest file '../../build/MS_3/MS_3.egg-info/SOURCES.txt'
+reading manifest file '../../build/MS_3/MS_3.egg-info/SOURCES.txt'
+writing manifest file '../../build/MS_3/MS_3.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/gabriel/MSD/packages/build/MS_3/build
+creating /home/gabriel/MSD/packages/build/MS_3/build/lib
+creating /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3
+copying MS_3/publisher_template.py -> /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3
+copying MS_3/service_server_template.py -> /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3
+copying MS_3/__init__.py -> /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3
+copying MS_3/subscriber_template.py -> /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3
+running install
+/home/gabriel/.local/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+running install_lib
+creating /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3
+copying /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3/publisher_template.py -> /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3
+copying /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3/service_server_template.py -> /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3
+copying /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3/__init__.py -> /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3
+copying /home/gabriel/MSD/packages/build/MS_3/build/lib/MS_3/subscriber_template.py -> /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3
+byte-compiling /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3/publisher_template.py to publisher_template.cpython-310.pyc
+byte-compiling /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3/service_server_template.py to service_server_template.cpython-310.pyc
+byte-compiling /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3/subscriber_template.py to subscriber_template.cpython-310.pyc
+running install_data
+creating /home/gabriel/MSD/packages/install/MS_3/share/ament_index
+creating /home/gabriel/MSD/packages/install/MS_3/share/ament_index/resource_index
+creating /home/gabriel/MSD/packages/install/MS_3/share/ament_index/resource_index/packages
+copying resource/MS_3 -> /home/gabriel/MSD/packages/install/MS_3/share/ament_index/resource_index/packages
+copying package.xml -> /home/gabriel/MSD/packages/install/MS_3/share/MS_3
+running install_egg_info
+Copying ../../build/MS_3/MS_3.egg-info to /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3-0.0.1-py3.10.egg-info
+running install_scripts
+Installing my_executable script to /home/gabriel/MSD/packages/install/MS_3/lib/MS_3
+writing list of installed files to '/home/gabriel/MSD/packages/build/MS_3/install.log'

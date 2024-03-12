@@ -1,4 +1,0 @@
-make /src file and in that run this command 
-    ros2 pkg create --build-type ament_python <package_name> --dependencies rclpy
-    (changing package_name)
-    

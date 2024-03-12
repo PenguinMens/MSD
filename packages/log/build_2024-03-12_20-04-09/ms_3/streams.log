@@ -1,0 +1,44 @@
+[0.976s] Invoking command in '/home/gabriel/MSD/packages/build/ms_3': PYTHONPATH=/home/gabriel/MSD/packages/build/ms_3/prefix_override:/home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages: /usr/bin/python3 setup.py develop --editable --build-directory /home/gabriel/MSD/packages/build/ms_3/build --no-deps install_data
+[1.207s] running develop
+[1.207s] /home/gabriel/.local/lib/python3.10/site-packages/setuptools/command/develop.py:40: EasyInstallDeprecationWarning: easy_install command is deprecated.
+[1.207s] !!
+[1.207s] 
+[1.207s]         ********************************************************************************
+[1.207s]         Please avoid running ``setup.py`` and ``easy_install``.
+[1.207s]         Instead, use pypa/build, pypa/installer or other
+[1.207s]         standards-based tools.
+[1.208s] 
+[1.208s]         See https://github.com/pypa/setuptools/issues/917 for details.
+[1.208s]         ********************************************************************************
+[1.208s] 
+[1.208s] !!
+[1.208s]   easy_install.initialize_options(self)
+[1.228s] /home/gabriel/.local/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[1.228s] !!
+[1.228s] 
+[1.228s]         ********************************************************************************
+[1.228s]         Please avoid running ``setup.py`` directly.
+[1.228s]         Instead, use pypa/build, pypa/installer or other
+[1.228s]         standards-based tools.
+[1.228s] 
+[1.228s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[1.228s]         ********************************************************************************
+[1.228s] 
+[1.228s] !!
+[1.229s]   self.initialize_options()
+[1.341s] running egg_info
+[1.350s] writing ms_3.egg-info/PKG-INFO
+[1.351s] writing dependency_links to ms_3.egg-info/dependency_links.txt
+[1.351s] writing entry points to ms_3.egg-info/entry_points.txt
+[1.351s] writing requirements to ms_3.egg-info/requires.txt
+[1.352s] writing top-level names to ms_3.egg-info/top_level.txt
+[1.372s] reading manifest file 'ms_3.egg-info/SOURCES.txt'
+[1.374s] writing manifest file 'ms_3.egg-info/SOURCES.txt'
+[1.385s] running build_ext
+[1.385s] Creating /home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms-3.egg-link (link to .)
+[1.386s] Installing leader script to /home/gabriel/MSD/packages/install/ms_3/lib/ms_3
+[1.386s] Installing milestone_3 script to /home/gabriel/MSD/packages/install/ms_3/lib/ms_3
+[1.386s] 
+[1.386s] Installed /home/gabriel/MSD/packages/build/ms_3
+[1.386s] running install_data
+[1.411s] Invoked command in '/home/gabriel/MSD/packages/build/ms_3' returned '0': PYTHONPATH=/home/gabriel/MSD/packages/build/ms_3/prefix_override:/home/gabriel/MSD/packages/install/ms_3/lib/python3.10/site-packages: /usr/bin/python3 setup.py develop --editable --build-directory /home/gabriel/MSD/packages/build/ms_3/build --no-deps install_data

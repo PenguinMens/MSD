@@ -1,0 +1,34 @@
+[2.028s] Invoking command in '/home/gabriel/MSD/packages/src/MS_3': PYTHONPATH=/home/gabriel/MSD/packages/build/MS_3/prefix_override:/home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w:JAVA_HOME/p /usr/bin/python3 setup.py egg_info --egg-base ../../build/MS_3 build --build-base /home/gabriel/MSD/packages/build/MS_3/build install --record /home/gabriel/MSD/packages/build/MS_3/install.log --single-version-externally-managed
+[2.261s] running egg_info
+[2.279s] writing ../../build/MS_3/MS_3.egg-info/PKG-INFO
+[2.279s] writing dependency_links to ../../build/MS_3/MS_3.egg-info/dependency_links.txt
+[2.280s] writing entry points to ../../build/MS_3/MS_3.egg-info/entry_points.txt
+[2.280s] writing requirements to ../../build/MS_3/MS_3.egg-info/requires.txt
+[2.280s] writing top-level names to ../../build/MS_3/MS_3.egg-info/top_level.txt
+[2.314s] reading manifest file '../../build/MS_3/MS_3.egg-info/SOURCES.txt'
+[2.315s] writing manifest file '../../build/MS_3/MS_3.egg-info/SOURCES.txt'
+[2.315s] running build
+[2.315s] running build_py
+[2.316s] running install
+[2.316s] /home/gabriel/.local/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[2.316s] !!
+[2.316s] 
+[2.316s]         ********************************************************************************
+[2.316s]         Please avoid running ``setup.py`` directly.
+[2.317s]         Instead, use pypa/build, pypa/installer or other
+[2.317s]         standards-based tools.
+[2.317s] 
+[2.317s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[2.317s]         ********************************************************************************
+[2.317s] 
+[2.317s] !!
+[2.317s]   self.initialize_options()
+[2.322s] running install_lib
+[2.341s] running install_data
+[2.358s] running install_egg_info
+[2.376s] removing '/home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3-0.0.1-py3.10.egg-info' (and everything under it)
+[2.377s] Copying ../../build/MS_3/MS_3.egg-info to /home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3-0.0.1-py3.10.egg-info
+[2.378s] running install_scripts
+[2.530s] Installing my_executable script to /home/gabriel/MSD/packages/install/MS_3/lib/MS_3
+[2.530s] writing list of installed files to '/home/gabriel/MSD/packages/build/MS_3/install.log'
+[2.562s] Invoked command in '/home/gabriel/MSD/packages/src/MS_3' returned '0': PYTHONPATH=/home/gabriel/MSD/packages/build/MS_3/prefix_override:/home/gabriel/MSD/packages/install/MS_3/lib/python3.10/site-packages:${PYTHONPATH} WSLENV=ELECTRON_RUN_AS_NODE/w:JAVA_HOME/p /usr/bin/python3 setup.py egg_info --egg-base ../../build/MS_3 build --build-base /home/gabriel/MSD/packages/build/MS_3/build install --record /home/gabriel/MSD/packages/build/MS_3/install.log --single-version-externally-managed

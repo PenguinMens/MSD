@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: turtle-chase
+Version: 0.0.0
+Summary: Milestone 3 Ros package for curtin university
+Maintainer: gabriel
+Maintainer-email: gabrielaadl02@gmail.com
+License: Apache-2.0
+Requires-Dist: setuptools
