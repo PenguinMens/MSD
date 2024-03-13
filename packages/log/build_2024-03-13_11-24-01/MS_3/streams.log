@@ -1,0 +1,23 @@
+[0.680s] Invoking command in '/home/student/MSD/packages/src/MS_3': PYTHONPATH=/home/student/MSD/packages/build/MS_3/prefix_override:/home/student/MSD/packages/install/MS_3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/MS_3 build --build-base /home/student/MSD/packages/build/MS_3/build install --record /home/student/MSD/packages/build/MS_3/install.log --single-version-externally-managed
+[0.816s] running egg_info
+[0.817s] writing ../../build/MS_3/MS_3.egg-info/PKG-INFO
+[0.819s] writing dependency_links to ../../build/MS_3/MS_3.egg-info/dependency_links.txt
+[0.819s] writing entry points to ../../build/MS_3/MS_3.egg-info/entry_points.txt
+[0.819s] writing requirements to ../../build/MS_3/MS_3.egg-info/requires.txt
+[0.819s] writing top-level names to ../../build/MS_3/MS_3.egg-info/top_level.txt
+[0.821s] reading manifest file '../../build/MS_3/MS_3.egg-info/SOURCES.txt'
+[0.823s] writing manifest file '../../build/MS_3/MS_3.egg-info/SOURCES.txt'
+[0.823s] running build
+[0.823s] running build_py
+[0.824s] running install
+[0.824s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.824s]   warnings.warn(
+[0.826s] running install_lib
+[0.828s] running install_data
+[0.829s] running install_egg_info
+[0.830s] removing '/home/student/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3-0.0.1-py3.10.egg-info' (and everything under it)
+[0.831s] Copying ../../build/MS_3/MS_3.egg-info to /home/student/MSD/packages/install/MS_3/lib/python3.10/site-packages/MS_3-0.0.1-py3.10.egg-info
+[0.832s] running install_scripts
+[0.846s] Installing my_executable script to /home/student/MSD/packages/install/MS_3/lib/MS_3
+[0.847s] writing list of installed files to '/home/student/MSD/packages/build/MS_3/install.log'
+[0.907s] Invoked command in '/home/student/MSD/packages/src/MS_3' returned '0': PYTHONPATH=/home/student/MSD/packages/build/MS_3/prefix_override:/home/student/MSD/packages/install/MS_3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/MS_3 build --build-base /home/student/MSD/packages/build/MS_3/build install --record /home/student/MSD/packages/build/MS_3/install.log --single-version-externally-managed

@@ -1,2 +1,3 @@
 [console_scripts]
 my_executable = MS_3.publisher_template:main
+

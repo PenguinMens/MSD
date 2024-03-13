@@ -17,6 +17,8 @@ class Leader(Node):
 
     def __init__(self):
         super().__init__('leader')
+
+        ### PUBLISHER
         # Publishers are created using interface type, topic name and QoS setting
         # (the value of 10 can be left as is)
         self.publisher = self.create_publisher(Twist, '/leader/cmd_vel', 10)
@@ -27,6 +29,8 @@ class Leader(Node):
         # Define variables used by the node here, for example a simple counter
         self.linear_velocity = 1.0
 
+
+        ### Service
         # Service servers are created using interface type, service name and callback function
         self.service = self.create_service(SetBool, '/turbo', self.service_callback)
 
@@ -43,7 +47,7 @@ class Leader(Node):
  
         
     def service_callback(self, request, response):
-        response.success = request.data
+        
         # Logger displays formatted text in the console, useful for simple debugging
         if(request.data):
             self.linear_velocity = 2.0
@@ -54,6 +58,8 @@ class Leader(Node):
         
 
         # The response to be returned is part of the interface defined in the corresponding .srv file
+        response.success = True
+        
         return response
 
 

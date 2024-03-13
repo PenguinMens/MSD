@@ -4,7 +4,7 @@ package_name = 'ms_3'
 
 setup(
     name=package_name,
-    version='0.0.1',
+    version='1.0.0',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='gabriel',
     maintainer_email='gabrielaadl02@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Package based of the milestone 3 document of MSD',
+    license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

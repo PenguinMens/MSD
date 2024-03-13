@@ -1,0 +1,31 @@
+[0.645s] Invoking command in '/home/student/MSD/packages/src/ms_3': PYTHONPATH=/home/student/MSD/packages/build/ms_3/prefix_override:/home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/ms_3 build --build-base /home/student/MSD/packages/build/ms_3/build install --record /home/student/MSD/packages/build/ms_3/install.log --single-version-externally-managed
+[0.764s] running egg_info
+[0.767s] writing ../../build/ms_3/ms_3.egg-info/PKG-INFO
+[0.767s] writing dependency_links to ../../build/ms_3/ms_3.egg-info/dependency_links.txt
+[0.767s] writing entry points to ../../build/ms_3/ms_3.egg-info/entry_points.txt
+[0.767s] writing requirements to ../../build/ms_3/ms_3.egg-info/requires.txt
+[0.767s] writing top-level names to ../../build/ms_3/ms_3.egg-info/top_level.txt
+[0.769s] reading manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[0.770s] writing manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[0.770s] running build
+[0.771s] running build_py
+[0.771s] copying ms_3/leader.py -> /home/student/MSD/packages/build/ms_3/build/lib/ms_3
+[0.772s] copying ms_3/follower.py -> /home/student/MSD/packages/build/ms_3/build/lib/ms_3
+[0.773s] running install
+[0.773s] running install_lib
+[0.774s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.774s]   warnings.warn(
+[0.775s] copying /home/student/MSD/packages/build/ms_3/build/lib/ms_3/leader.py -> /home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3
+[0.775s] copying /home/student/MSD/packages/build/ms_3/build/lib/ms_3/follower.py -> /home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3
+[0.776s] byte-compiling /home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3/leader.py to leader.cpython-310.pyc
+[0.778s] byte-compiling /home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3/follower.py to follower.cpython-310.pyc
+[0.778s] running install_data
+[0.778s] running install_egg_info
+[0.779s] removing '/home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3-0.0.1-py3.10.egg-info' (and everything under it)
+[0.780s] Copying ../../build/ms_3/ms_3.egg-info to /home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3-0.0.1-py3.10.egg-info
+[0.781s] running install_scripts
+[0.795s] Installing follower script to /home/student/MSD/packages/install/ms_3/lib/ms_3
+[0.795s] Installing leader script to /home/student/MSD/packages/install/ms_3/lib/ms_3
+[0.796s] Installing milestone_3 script to /home/student/MSD/packages/install/ms_3/lib/ms_3
+[0.797s] writing list of installed files to '/home/student/MSD/packages/build/ms_3/install.log'
+[0.817s] Invoked command in '/home/student/MSD/packages/src/ms_3' returned '0': PYTHONPATH=/home/student/MSD/packages/build/ms_3/prefix_override:/home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/ms_3 build --build-base /home/student/MSD/packages/build/ms_3/build install --record /home/student/MSD/packages/build/ms_3/install.log --single-version-externally-managed

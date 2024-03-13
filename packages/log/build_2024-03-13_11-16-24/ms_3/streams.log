@@ -1,0 +1,28 @@
+[0.599s] Invoking command in '/home/student/MSD/packages/src/ms_3': PYTHONPATH=/home/student/MSD/packages/build/ms_3/prefix_override:/home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/ms_3 build --build-base /home/student/MSD/packages/build/ms_3/build install --record /home/student/MSD/packages/build/ms_3/install.log --single-version-externally-managed
+[0.722s] running egg_info
+[0.723s] writing ../../build/ms_3/ms_3.egg-info/PKG-INFO
+[0.724s] writing dependency_links to ../../build/ms_3/ms_3.egg-info/dependency_links.txt
+[0.725s] writing entry points to ../../build/ms_3/ms_3.egg-info/entry_points.txt
+[0.725s] writing requirements to ../../build/ms_3/ms_3.egg-info/requires.txt
+[0.725s] writing top-level names to ../../build/ms_3/ms_3.egg-info/top_level.txt
+[0.727s] reading manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[0.731s] writing manifest file '../../build/ms_3/ms_3.egg-info/SOURCES.txt'
+[0.731s] running build
+[0.731s] running build_py
+[0.731s] copying ms_3/follower.py -> /home/student/MSD/packages/build/ms_3/build/lib/ms_3
+[0.733s] running install
+[0.735s] running install_lib
+[0.735s] copying /home/student/MSD/packages/build/ms_3/build/lib/ms_3/follower.py -> /home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3
+[0.735s] byte-compiling /home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3/follower.py to follower.cpython-310.pyc
+[0.735s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.735s]   warnings.warn(
+[0.743s] running install_data
+[0.743s] running install_egg_info
+[0.743s] removing '/home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3-0.0.1-py3.10.egg-info' (and everything under it)
+[0.754s] Copying ../../build/ms_3/ms_3.egg-info to /home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages/ms_3-0.0.1-py3.10.egg-info
+[0.754s] running install_scripts
+[0.768s] Installing follower script to /home/student/MSD/packages/install/ms_3/lib/ms_3
+[0.769s] Installing leader script to /home/student/MSD/packages/install/ms_3/lib/ms_3
+[0.770s] Installing milestone_3 script to /home/student/MSD/packages/install/ms_3/lib/ms_3
+[0.770s] writing list of installed files to '/home/student/MSD/packages/build/ms_3/install.log'
+[0.811s] Invoked command in '/home/student/MSD/packages/src/ms_3' returned '0': PYTHONPATH=/home/student/MSD/packages/build/ms_3/prefix_override:/home/student/MSD/packages/install/ms_3/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/ms_3 build --build-base /home/student/MSD/packages/build/ms_3/build install --record /home/student/MSD/packages/build/ms_3/install.log --single-version-externally-managed
