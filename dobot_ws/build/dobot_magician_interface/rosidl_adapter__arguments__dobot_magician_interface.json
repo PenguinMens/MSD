@@ -1,0 +1,6 @@
+{
+  "package_name": "dobot_magician_interface",
+  "non_idl_tuples": [
+    "/home/student/MSD/dobot_ws/src/dobot_magician_interface:action/JointPTP.action"
+  ]
+}
