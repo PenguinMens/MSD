@@ -10,7 +10,7 @@ from turtlesim.msg import Pose as TurtlePose
 # in Milestone 3 handout document could be imported as follows:
 # 
 # from my_interface_package.msg import My_message
-import math
+import 
 # You can import here any Python module you plan to use in this node
 
 # The class name is up to you
