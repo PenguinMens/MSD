@@ -1,5 +1,0 @@
-float32[] joint_goal
----
-bool sucess
----
-float32[] joint_state
