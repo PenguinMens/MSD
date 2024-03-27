@@ -11,7 +11,7 @@ from sensor_msgs.msg import JointState
 # from my_interface_package.msg import My_message
 
 # You can import here any Python module you plan to use in this node
-from dobot_client import DobotClient
+from dobot_magician.dobot_client import DobotClient
 # The class name is up to you
 class DobotState(Node):
 
@@ -19,7 +19,7 @@ class DobotState(Node):
         super().__init__('dobot_state')
         # Publishers are created using interface type, topic name and QoS setting
         # (the value of 10 can be left as is)
-        self.publisher = self.create_publisher(JointStates, 'dobot_state', 10)
+        self.publisher = self.create_publisher(JointState, 'dobot_state', 10)
         # Publishers typically publish message at a predefined rate
         timer_period = 0.5
         # The timer_callback function will be called every timer_period seconds
@@ -32,6 +32,8 @@ class DobotState(Node):
         # To publish a message, you need to create the corresponding object first
         # The name is the same as interface name (e.g., String or My_message)
         msg = JointState()
+        
+        msg.name = ['J1','J2','J3','J4']
         jointState = dobot.get_joint_state()
         msg.position = jointState # @TODO CVHECK THIS SHIT OUT
         
@@ -45,7 +47,7 @@ class DobotState(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    node = MyClassName()
+    node = DobotState()
     rclpy.spin(node)
     node.destroy_node()
 

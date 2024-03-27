@@ -29,7 +29,8 @@ class DobotClient:
                     port = int(f.read())
                 self._sock.connect(("localhost", port))
                 break
-            except:
+            except Exception as e:
+                print(e)
                 pass
 
     def start_homing(self):

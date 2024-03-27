@@ -1,0 +1,7 @@
+<launch>
+ <executable cmd="python3 ./src/dobot_magician/dobot_magician/dobot_server.py" output="screen"/>
+ <node pkg="dobot_magician" exec="dobot_ee" />
+ <node pkg="dobot_magician" exec="dobot_homing" />
+ <node pkg="dobot_magician" exec="dobot_state" />
+ <node pkg="dobot_magician" exec="dobot_ptp" />
+</launch>

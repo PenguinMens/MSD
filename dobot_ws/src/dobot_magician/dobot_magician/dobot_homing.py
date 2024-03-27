@@ -11,7 +11,7 @@ from std_srvs.srv import Trigger
 # from my_interface_package.msg import My_message
 
 # You can import here any Python module you plan to use in this node
-from dobot_client import DobotClient
+from dobot_magician.dobot_client import DobotClient
 
 
 # The class name is up to you
@@ -32,7 +32,7 @@ class DobotHoming(Node):
         response.success = True
         # The response to be returned is part of the interface defined in the corresponding .srv file
         return response
-
+    
 
 # The code below should be left as is
 def main(args=None):

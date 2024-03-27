@@ -11,11 +11,12 @@ from std_srvs.srv import SetBool
 # from my_interface_package.msg import My_message
 
 # You can import here any Python module you plan to use in this node
-from dobot_client import DobotClient
+from dobot_magician.dobot_client import DobotClient
 # The class name is up to you
 class DobotEE(Node):
 
     def __init__(self):
+        self.dobot = DobotClient()
         super().__init__('dobot_ee')
         # Service servers are created using interface type, service name and callback function
         self.service = self.create_service(SetBool, 'dobot_enable_suction_cup', self.service_callback)
@@ -23,12 +24,14 @@ class DobotEE(Node):
     # Service callback will be called when the server receives a request
     # (request and response variables are already created and need to be filled with data)
     def service_callback(self, request, response):
-        dobot = DobotClient()
-
         
+
+        print("setting suction on")
         # Logger displays formatted text in the console, useful for simple debugging
-        self.get_logger().info(f"Incoming request\na: {request.a}, b: {request.b}")
-        dobot.start_homing()
+        if request.data:
+            self.dobot.set_suction_cup(True)
+        else:
+            self.dobot.set_suction_cup(False)
         # The response to be returned is part of the interface defined in the corresponding .srv file
         return response
 
