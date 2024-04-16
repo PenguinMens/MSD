@@ -9,12 +9,12 @@
   <xacro:property name="L3" value="0.06" />
   <xacro:property name="L3radius" value="0.03" />
   <xacro:property name="eesize" value="0.05" />
-  <xacro:property name="J1MIN" value="0" />
-  <xacro:property name="J1MAX" value="0.20" />
+  <xacro:property name="J1MIN" value="-0.08" />
+  <xacro:property name="J1MAX" value="0.08" />
   <xacro:property name="J2MIN" value="${-pi/2}" />
   <xacro:property name="J2MAX" value="${pi/2}" />
-  <xacro:property name="J3MIN" value="${0}" />
-  <xacro:property name="J3MAX" value="${0.06}" />
+  <xacro:property name="J3MIN" value="${-0.04}" />
+  <xacro:property name="J3MAX" value="${0.04}" />
 
   <material name="blue">
     <color rgba="0.2 0.4 0.65 1" />
@@ -30,7 +30,7 @@
 
   <link name="link1">
     <visual name="link1">
-      <origin xyz="0 0 ${-L1/2}" />
+      <origin xyz="0 0 ${L1/2}" />
       <geometry>
         <box size="${L1radius} ${L1radius} ${L1}" />
         <!-- <cylinder radius="${L1radius}" length="${L1}" /> -->
@@ -41,7 +41,7 @@
 
   <link name="link2">
     <visual name="link2">
-      <origin xyz="0 0 ${-L2}" />
+      <origin xyz="0 0 ${-L2/2}" />
       <geometry>
          <box size="${L2radius} ${L2radius} ${L2}"/>
       </geometry>
@@ -77,13 +77,13 @@
   <joint name="base_to_l1" type="fixed">
     <parent link="base" />
     <child link="link1" />
-    <origin xyz="0 0 ${L1}" rpy="0 0 ${-pi/2}" />
+    <origin xyz="0 0 0" rpy="0 0 ${-pi/2}" />
   </joint>
 
   <joint name="joint1" type="prismatic">
     <parent link="link1" />
     <child link="link2" />
-    <origin xyz="0 0 0" rpy="0 ${-pi/2} 0" />
+    <origin xyz="0 0 ${L1}" rpy="0 ${-pi/2} 0" />
     <axis xyz="1 0 0" />
     <limit lower="${J1MIN}" upper="${J1MAX}" effort="1" velocity="1" />
   </joint>
@@ -93,7 +93,7 @@
   <joint name="joint2" type="revolute">
     <parent link="link2" />
     <child link="link3" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
+    <origin xyz="0 0 ${-L2}" rpy="${-pi/2} 0 0" />
     <axis xyz="1 0 0" />
     <limit lower="${J2MIN}" upper="${J2MAX}" effort="1" velocity="1" />
   </joint>
@@ -101,9 +101,9 @@
   <joint name="ee_in_link3" type="prismatic">
     <parent link="link3" />
     <child link="ee" />
-    <origin xyz="0 0 ${-(L2+L3)}" rpy="0 ${pi}  0" />
+    <origin xyz="0 0 0" rpy="0 0  0" />
     <limit lower="${J3MIN}" upper="${J3MAX}" effort="1" velocity="1" />
-    <axis xyz="0 0 1" />
+    <axis xyz="0 1 0" />
   </joint>
 
 </robot>
