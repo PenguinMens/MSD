@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robots_viz">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dobot_twin_viz">
   <xacro:property name="L0" value="0.056" />
-  <xacro:property name="L0radius" value="0.03" />
+  <xacro:property name="L0radius" value="0.1" />
   <xacro:property name="L1" value="0.082" />
   <xacro:property name="L1radius" value="0.02" />
   <xacro:property name="L2" value="0.145" />
@@ -14,13 +14,17 @@
   <xacro:property name="L5" value="0.07" />
   <xacro:property name="L5radius" value="0.03" />
   <xacro:property name="eesize" value="0.05" />
-  <xacro:property name="J1MIN" value="0" />
-  <xacro:property name="J1MAX" value="0.20" />
-  <xacro:property name="J2MIN" value="${-pi/2}" />
-  <xacro:property name="J2MAX" value="${pi/2}" />
-  <xacro:property name="J3MIN" value="${0}" />
-  <xacro:property name="J3MAX" value="${0.06}" />
 
+
+
+  <xacro:property name="J1MIN" value="${-pi/2}" />
+  <xacro:property name="J1MAX" value="${pi/2}" />
+  <xacro:property name="J2MIN" value="0" />
+  <xacro:property name="J2MAX" value="${70*pi/180}" />
+  <xacro:property name="J3MIN" value="${15*pi/180}" />
+  <xacro:property name="J3MAX" value="${40*pi/180}" />
+  <xacro:property name="J4MIN" value="${-90*pi/180}" />
+  <xacro:property name="J4MAX" value="${90*pi/180}" />
   <material name="blue">
     <color rgba="0.2 0.4 0.65 1" />
   </material>
@@ -55,7 +59,7 @@
     </visual>
   </link>
 
-  <!-- <link name="link2">
+ <link name="link2">
     <visual name="link2">
       <origin xyz="0 0 ${L2/2}" rpy = "0 0 0"/>
       <geometry>
@@ -65,9 +69,9 @@
     </visual>
   </link>
 
-  <link name="link3">
+    <link name="link3">
     <visual name="link3">
-      <origin xyz="0 0 0" rpy = "0 ${pi/2} 0"/>
+      <origin xyz="${L3/2}  0 0" rpy = "0 ${pi/2} 0"/>
       <geometry>
         <cylinder radius="${L3radius}" length="${L3}" />
       </geometry>
@@ -75,26 +79,38 @@
     </visual>
   </link>
 
-   <link name="link4">
+  <link name="link4">
     <visual name="link4">
-      <origin xyz="0 0 0" rpy = "0 ${pi/2} 0"/>
+      <origin xyz="${L4/2} 0 0" rpy = "0 ${pi/2} 0"/>
       <geometry>
-        <cylinder radius="${L4radius}" length="${L4}" />
+        <!-- <cylinder radius="${L3radius}" length="${L3}" /> -->
+        <box size="${L4radius} ${L4radius} ${L4}" />
       </geometry>
       <material name="blue" />
     </visual>
   </link>
+  <link name="link4_mimic">
+    <visual name="link4_mimic">
+      <origin xyz="0 0 0" rpy = "0 0 0"/>
+      <geometry>
+        <!-- <cylinder radius="${L3radius}" length="${L3}" /> -->
+        <box size="0 0 0" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+  </link>
+  
 
     <link name="link5">
     <visual name="link5">
-      <origin xyz="0 0 0" rpy = "0 ${pi/2} 0"/>
+      <origin xyz="0 0 ${-L5/2}" rpy = "0 0 0"/>
       <geometry>
         <cylinder radius="${L5radius}" length="${L5}" />
       </geometry>
       <material name="blue" />
     </visual>
   </link>
-
+<!--
   <link name="ee">
     <visual name="ee">
       <origin xyz="0 0 0" />
@@ -114,20 +130,60 @@
   <joint name="joint0" type="fixed">
     <parent link="base" />
     <child link="link0" />
-    <origin xyz="0 0 ${L1}" rpy="0 0 ${-pi/2}" />
+    <origin xyz="0 0 0" rpy="0 0 ${-pi/2}" />
   </joint>
 
-  <joint name="joint1" type="revolute">
+  <joint name="J1" type="revolute">
     <parent link="link0" />
     <child link="link1" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
+    <origin xyz="0 0 ${L0}" rpy="0 ${-pi} 0" />
     <axis xyz="0 0 1" />
     <limit lower="${J1MIN}" upper="${J1MAX}" effort="1" velocity="1" />
   </joint>
 
+  
+  <joint name="J2" type="revolute">
+    <parent link="link1" />
+    <child link="link2" />
+    <origin xyz="0 0 ${-L1}" rpy="0 ${-pi} 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="${J2MIN}" upper="${J2MAX}" effort="1" velocity="1" />
+  </joint>
 
+  <joint name="J3" type="revolute">
+    <parent link="link2" />
+    <child link="link3" />
+    <origin xyz="0 0 ${L2}" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="${J3MIN}" upper="${J3MAX}" effort="1" velocity="1" />
+  </joint>
 
-  <!-- <joint name="joint2" type="revolute">
+  <joint name="joint4_1" type="revolute">
+    <parent link="link3" />
+    <child link="link4_mimic" />
+    <origin xyz="${L3} 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="${J1MIN}" upper="${J1MAX}" effort="1" velocity="1" />
+    <mimic joint = "J3" multiplier="-1" offset = "0"/>
+  </joint>  
+  <joint name="joint4_2" type="revolute">
+    <parent link="link4_mimic" />
+    <child link="link4" />
+    <origin xyz="0   0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="${J1MIN}" upper="${J1MAX}" effort="1" velocity="1" />
+    <mimic joint = "J2" multiplier="-1" offset = "0"/>
+  </joint>
+    
+      <joint name="J4" type="revolute">
+    <parent link="link4" />
+    <child link="link5" />
+    <origin xyz="${L4} 0 0" rpy="0 0 ${-pi}" />
+    <axis xyz="0 0 1" />
+    <limit lower="${J4MIN}" upper="${J4MAX}" effort="1" velocity="1" />
+
+  </joint>
+  <!-- <joint name="J2" type="revolute">
     <parent link="link2" />
     <child link="link3" />
     <origin xyz="0 0 0" rpy="0 0 0" />

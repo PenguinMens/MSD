@@ -1,0 +1,10 @@
+<launch>
+<arg name="filename" default="dobot_twin_viz"/>
+<node pkg="robot_state_publisher" exec="robot_state_publisher">
+<param name="robot_description" value="$(command 'xacro $(find-pkg-share dobot_twin_viz)/urdf/$(var filename).urdf.xacro')"/>
+</node>
+<node pkg="joint_state_publisher" exec="joint_state_publisher">
+<param name="source_list"  value="[dobot_state]" />
+</node>
+<node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share dobot_twin_viz)/config/$(var filename).rviz" />
+</launch>
