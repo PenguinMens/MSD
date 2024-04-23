@@ -35,7 +35,10 @@ class DobotState(Node):
         
         msg.name = ['J1','J2','J3','J4']
         jointState = dobot.get_joint_state()
-        msg.position = jointState # @TODO CVHECK THIS SHIT OUT
+        for i in range(len(jointState)):
+            msg.position[i] = jointState[i]*(3.1415/180)
+
+        
         
         self.publisher.publish(msg)
         # Logger displays formatted text in the console, useful for simple debugging
