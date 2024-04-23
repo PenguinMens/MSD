@@ -35,8 +35,8 @@ class DobotState(Node):
         
         msg.name = ['J1','J2','J3','J4']
         jointState = dobot.get_joint_state()
-        for i in range(len(jointState)):
-            msg.position[i] = jointState[i]*(3.1415/180)
+        msg.position = (jointState[0]*(3.1415/180),jointState[1]*(3.1415/180),jointState[2]*(3.1415/180),jointState[3]*(3.1415/180))
+
 
         
         
