@@ -10,6 +10,8 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 set(interface_files
  "action/JointPTP.action"
+ "action/PosePTP.action"
+ "srv/PickAndPlace.srv"
 )
 rosidl_generate_interfaces(${PROJECT_NAME}
  ${interface_files}

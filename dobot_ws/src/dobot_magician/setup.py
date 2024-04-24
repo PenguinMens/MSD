@@ -30,7 +30,8 @@ setup(
             "dobot_homing = dobot_magician.dobot_homing:main",
             "dobot_ee = dobot_magician.dobot_ee:main",
             "dobot_state = dobot_magician.dobot_state:main",
-            "dobot_ptp = dobot_magician.dobot_ptp:main"
+            "dobot_ptp = dobot_magician.dobot_ptp:main",
+            "dobot_cartesian_ptp = dobot_magician.dobot_cartesian_ptp:main"
         ],
     },
 

@@ -1,0 +1,4 @@
+float32[] pick_pose
+float32[] place_pose
+---
+bool succes

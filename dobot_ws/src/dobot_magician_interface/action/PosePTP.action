@@ -1,0 +1,5 @@
+float32[] goal_pose
+---
+bool sucess
+---
+float32[] current_pose

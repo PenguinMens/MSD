@@ -4,4 +4,5 @@
  <node pkg="dobot_magician" exec="dobot_homing" />
  <node pkg="dobot_magician" exec="dobot_state" />
  <node pkg="dobot_magician" exec="dobot_ptp" />
+ <node pkg="dobot_magician" exec="dobot_cartesian_ptp" />
 </launch>

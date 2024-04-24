@@ -12,8 +12,8 @@
   <xacro:property name="J1MAX" value="0.08" />
   <xacro:property name="J2MIN" value="${-pi/2}" />
   <xacro:property name="J2MAX" value="${pi/2}" />
-  <xacro:property name="J3MIN" value="${0}" />
-  <xacro:property name="J3MAX" value="${0.06}" />
+  <xacro:property name="J3MIN" value="${-0.04}" />
+  <xacro:property name="J3MAX" value="${0.04}" />
 
   <material name="blue">
     <color rgba="0.2 0.4 0.65 1" />
