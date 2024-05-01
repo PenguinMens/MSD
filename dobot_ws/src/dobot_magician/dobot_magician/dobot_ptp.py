@@ -50,7 +50,6 @@ class MyClassName(Node):
 
     # This function is called whenever new goal has been accepted
     def handle_accepted_callback(self, goal_handle):
-
         with self.goal_lock:
             # This server only allows one goal at a time
             if self.goal_handle is not None and self.goal_handle.is_active:

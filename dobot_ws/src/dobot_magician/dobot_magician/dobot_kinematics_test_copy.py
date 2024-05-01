@@ -16,17 +16,23 @@ def forward_kinematics_solution(th1, th2, th3, th4):
         
         return x/1000, y/1000, z/1000, r
 
-def inverse_kinematics(self, x, y, z,r):
+def inverse_kinematics(x, y, z,r):
+    L0 = 0.056
+    L1 = 0.082
+    L2 = 0.135
+    L3 = 0.147
+    L4 = 0.060
+    L5 = 0.070 
     # Calculate the inverse kinematics
-    d = np.sqrt(x**2 + y**2) - self.L4
-    h = z + self.L5 - self.L0 - self.L1
+    d = np.sqrt(x**2 + y**2) - L4
+    h = z + L5 - L0 - L1
     c = np.sqrt(d**2 + h**2)
     alpha = math.atan2(d,h)
-    numerator = (self.L2**2 - self.L3**2 + c**2)
-    denominator = 2 * self.L2 * c
+    numerator = (L2**2 - L3**2 + c**2)
+    denominator = 2 * L2 * c
     division = numerator/denominator
-    numeraor3 = (self.L2**2 + self.L3**2 - c**2)
-    denominator3 = 2 * self.L2 * self.L3
+    numeraor3 = (L2**2 + L3**2 - c**2)
+    denominator3 = 2 * L2 * L3
     division3 = numeraor3/denominator3
     if(division > 1 or division < -1 or division3 > 1 or division3 < -1):
         print("The division is out of range")

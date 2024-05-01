@@ -9,6 +9,8 @@ from rclpy.node import Node
 # Replace the following import with the interface this node is using
 from dobot_magician_interface.action import PosePTP
 from dobot_magician.dobot_client import DobotClient
+from dobot_magician.dobot_kinematics_test_copy import inverse_kinematics
+from dobot_magician.dobot_kinematics_test_copy import forward_kinematics_solution
 # You can import here any Python module you plan to use in this node
 import time
 
@@ -40,14 +42,16 @@ class MyClassName(Node):
         self.get_logger().info(f'Received goal request233 {goal_request}')
         goal = goal_request.goal_pose
         self.get_logger().info(f'Received goal22 {goal}')
-        for i in len(goal):
-            print(f"{i} {goal}")
-        if(self.dobot.is_goal_valid(goal[0],goal[1],goal[2],goal[3]                  
-                                                   
+        angle_goal = inverse_kinematics(*goal)
+        self.get_logger().info(f'Received goal request233 {angle_goal}')
+        if(self.dobot.is_goal_valid(*angle_goal                                   
                                  )):
+            self.get_logger().info("accepted")
             return GoalResponse.ACCEPT
         else:
+            self.get_logger().info("rejected")
             return GoalResponse.REJECT
+        
 
         # ... or return GoalResponse.REJECT
 
@@ -76,14 +80,12 @@ class MyClassName(Node):
         # The example below calculates the sum of the Fibonacci sequence up to a given term (which is the action goal); the feedback messages contain partial sums of the sequence
 
         # Append the seeds for the Fibonacci sequence
-        feedback_msg = JointPTP.Feedback()
-        goal = goal_handle.request.joint_goal
-       
-        self.dobot.set_joint_ptp(goal[0],
-                                 goal[1],
-                                 goal[2],
-                                 goal[3]                                 
-                                 )
+        feedback_msg = PosePTP.Feedback()
+        goal = goal_handle.request.goal_pose
+        angle_goal = inverse_kinematics(*goal)
+        self.get_logger().info(f"angle goal{angle_goal}")
+
+        self.dobot.set_joint_ptp(j1=angle_goal[0],j2=angle_goal[1],j3=angle_goal[2],j4=angle_goal[3] )
         
         # Start executing the action
         while(1):
@@ -92,26 +94,28 @@ class MyClassName(Node):
             if not goal_handle.is_active:
 
                 self.get_logger().info('Goal aborted')
-                return JointPTP.Result()
+                return PosePTP.Result()
 
             if goal_handle.is_cancel_requested:
                 goal_handle.canceled()
               
                 self.get_logger().info('Goal canceled')
-                return JointPTP.Result()
+                return PosePTP.Result()
 
             # Update Fibonacci sequence
-            feedback_msg.joint_state = self.dobot.get_joint_state()
-            self.get_logger().info('Publishing feedback: {0}'.format(feedback_msg.joint_state[0]))
+            feedback_msg.current_pose = self.dobot.get_joint_state()
+            self.get_logger().info('Publishing feedback: {0}'.format(feedback_msg.current_pose[0]))
             goalcheck = True
-            for i,joint in enumerate(feedback_msg.joint_state):
-                if abs(joint - goal[i])  > 1:
+            
+            for i,joint in enumerate(feedback_msg.current_pose):
+                if abs(joint - angle_goal[i])  > 1:
+                    self.get_logger().info(f"goal {angle_goal[i]} joint {feedback_msg.current_pose}")
                     goalcheck = False
 
             # Publish the feedback
             goal_handle.publish_feedback(feedback_msg)
             if goalcheck:
-                self.stop_current_action()
+                #self.stop_current_action()
                 break
             # Sleep for demonstration purposes
             time.sleep(1)
@@ -119,8 +123,10 @@ class MyClassName(Node):
         goal_handle.succeed()
 
         # Populate result message
-        result = JointPTP.Result()
-        result.joint_state = feedback_msg.joint_state
+        result = PosePTP.Result()
+        result.sucess = True
+        self.get_logger().info(f"result {result}" )
+        
 
         self.get_logger().info('Returning result: {0}'.format(feedback_msg))
 

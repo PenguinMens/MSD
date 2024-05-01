@@ -31,7 +31,8 @@ setup(
             "dobot_ee = dobot_magician.dobot_ee:main",
             "dobot_state = dobot_magician.dobot_state:main",
             "dobot_ptp = dobot_magician.dobot_ptp:main",
-            "dobot_cartesian_ptp = dobot_magician.dobot_cartesian_ptp:main"
+            "dobot_cartesian_ptp = dobot_magician.dobot_cartesian_ptp:main",
+            "dobot_pickandplace = dobot_magician.dobot_pickandplace:main",
         ],
     },
 
