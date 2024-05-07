@@ -29,10 +29,36 @@ class DobotHoming(Node):
         dobot = DobotClient()
         # Logger displays formatted text in the console, useful for simple debugging
         #self.get_logger().info(f"Incoming request\na: {request.a}, b: {request.b}")
-        angle_goal = inverse_kinematics(*request.pick_pose)
-        self.get_logger().info(f'Received goal request233 {angle_goal}')
+        pick_goal = inverse_kinematics(*request.pick_pose) 
+        place_goal = inverse_kinematics(*request.place_pose)
+        self.get_logger().info(f'Received goal request233 {pick_goal}')
+        if not self.dobot.is_goal_valid(*pick_goal) or not self.dobot.is_goal_valid(*place_goal):
+            self.get_logger().info("rejected")
+            response.succes = False
+            return response
+        home_goal = [0,0,0,0]
+        home_pose = forward_kinematics_solution(*home_goal)
+        # do 2d translation first which is x and y diretion at once, then do z direction
 
-        dobot.set_joint_ptp(*angle_goal)
+        dobot.set_joint_ptp(0,0,0,0)
+        dobot.set_joint_ptp(*(inverse_kinematics(request.pick_pose[0], request.pick_pose[1],home_pose[2], request.pick_pose[3])))
+        # do z direction
+        dobot.set_joint_ptp(*pick_goal)
+        # turn on suction
+        dobot.set_suction_cup(True)
+        # go to place position
+        # do 2d do z direction then x and y direction
+
+
+        dobot.set_joint_ptp(*(inverse_kinematics(request.pick_pose[0],request.pick_pose[1] , home_pose[2], request.place_pose[3])))
+        dobot.set_joint_ptp(*(inverse_kinematics(request.place_pose[0],request.place_pose[1] , home_pose[2], request.place_pose[3])))
+        dobot.set_joint_ptp(*place_goal)
+
+
+
+
+        # loop until the dobot is do    ne homing
+
         
         # if(self.dobot.is_goal_valid(*angle_goal                                   
         #                          )):

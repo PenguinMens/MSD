@@ -1,8 +1,23 @@
 import math
+from typing import Tuple
 import numpy as np
-
+from dobot_magician.OutOfBoundsException import OutOfBoundsException
 
 def forward_kinematics_solution(th1, th2, th3, th4):
+        """
+        Calculate the forward kinematics for a given set of joint angles.
+
+        Args:
+            th1 (float): The first joint angle.
+            th2 (float): The second joint angle.
+            th3 (float): The third joint angle.
+            th4 (float): The fourth joint angle.
+        
+        Returns:
+            Tuple[float, float, float, float]: The calculated coordinates (x, y, z, r).
+        
+        
+        """
         r = th1 + th4
         th1 = np.deg2rad(th1)
         th2 = np.deg2rad(th2)
@@ -16,7 +31,24 @@ def forward_kinematics_solution(th1, th2, th3, th4):
         
         return x/1000, y/1000, z/1000, r
 
-def inverse_kinematics(x, y, z,r):
+def inverse_kinematics(x, y, z, r) -> Tuple[float, float, float, float]:
+    """
+    Calculate the inverse kinematics for a given set of coordinates.
+
+    Args:
+        x (float): The x-coordinate.
+        y (float): The y-coordinate.
+        z (float): The z-coordinate.
+        r (float): The rotation angle.
+
+    Returns:
+        Tuple[float, float, float, float]: The calculated joint angles (theta1, theta2, theta3, theta4).
+
+    Raises:
+        OutOfBoundsException: If the division is out of range.
+
+    """
+    # Rest of the code...
     L0 = 0.056
     L1 = 0.082
     L2 = 0.135
@@ -35,8 +67,9 @@ def inverse_kinematics(x, y, z,r):
     denominator3 = 2 * L2 * L3
     division3 = numeraor3/denominator3
     if(division > 1 or division < -1 or division3 > 1 or division3 < -1):
+        raise OutOfBoundsException
         print("The division is out of range")
-        return 10,10,10,10
+        
     theta1 = math.degrees(math.atan2(y,x))
     theta2 = math.degrees(alpha - math.acos(numerator/denominator))
     theta3 = math.degrees(math.asin(numeraor3/denominator3))
