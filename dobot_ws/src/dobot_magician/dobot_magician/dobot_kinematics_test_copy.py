@@ -1,7 +1,7 @@
 import math
 from typing import Tuple
 import numpy as np
-from dobot_magician.OutOfBoundsException import OutOfBoundsException
+# from dobot_magician.OutOfBoundsException import OutOfBoundsException
 
 def forward_kinematics_solution(th1, th2, th3, th4):
         """
@@ -18,7 +18,7 @@ def forward_kinematics_solution(th1, th2, th3, th4):
         
         
         """
-        r = th1 + th4
+        r = np.deg2rad(th1 + th4)
         th1 = np.deg2rad(th1)
         th2 = np.deg2rad(th2)
         th3 = np.deg2rad(th3)
@@ -67,7 +67,7 @@ def inverse_kinematics(x, y, z, r) -> Tuple[float, float, float, float]:
     denominator3 = 2 * L2 * L3
     division3 = numeraor3/denominator3
     if(division > 1 or division < -1 or division3 > 1 or division3 < -1):
-        raise OutOfBoundsException
+        #raise OutOfBoundsException
         print("The division is out of range")
         
     theta1 = math.degrees(math.atan2(y,x))

@@ -63,7 +63,8 @@ class DobotState(Node):
         xyzw = forward_kinematics_solution(jointState[0], jointState[1],jointState[2],jointState[3])
         print(type(xyzw))
         msg.position = Point(x = xyzw[0], y = xyzw[1], z = xyzw[2])
-        msg.orientation = Quaternion(x = 0.0, y = 0.0, z = xyzw[2]*math.sin(xyzw[3]), w = math.cos(xyzw[3]/2))
+        msg.orientation = Quaternion(x = 0.0, y = 0.0, z = math.sin(xyzw[3]/2), w = math.cos(xyzw[3]/2))
+        
         self.publisher2.publish(msg)
         
         
