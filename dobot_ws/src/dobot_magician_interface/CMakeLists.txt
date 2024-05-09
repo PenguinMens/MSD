@@ -12,6 +12,7 @@ set(interface_files
  "action/JointPTP.action"
  "action/PosePTP.action"
  "srv/PickAndPlace.srv"
+ "msg/TeleopAction.msg"
 )
 rosidl_generate_interfaces(${PROJECT_NAME}
  ${interface_files}
