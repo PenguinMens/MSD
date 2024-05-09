@@ -27,6 +27,7 @@ setup(
     entry_points={
         'console_scripts': [
             "dobot_teleop_keyboard = dobot_teleop.dobot_teleop_keyboard:main",
+            "dobot_teleop = dobot_teleop.dobot_teleop:main",
         ],
     },
 )
