@@ -25,7 +25,7 @@ class MyClassName(Node):
         # (the value of 10 can be left as is)
         self.subscription = self.create_subscription(
             TeleopAction,
-            'dobot_teleop',
+            'teleop_keyboard',
             self.listener_callback,
             10)
         self.x = 0.2
@@ -41,7 +41,7 @@ class MyClassName(Node):
 
     # Listener callback function will be called every time a message is published on the topic this node is subscribed to
     def listener_callback(self, msg):
-        dobot = DobotClient()
+        
         # Logger displays formatted text in the console, useful for simple debugging
         ammount = 0.1
         cartesianAmmount = 0.001
@@ -49,7 +49,11 @@ class MyClassName(Node):
         state = msg.state
         isCartisian = msg.cartisian
         valid = False
-        if key == 'KEY_A': # mvoing joint 4 or self.r to the left
+        self.get_logger().info(f"{msg}")
+        dobot = DobotClient()
+        if state == 0:
+            dobot.stop_current_action()
+        elif key == 'KEY_A': # mvoing joint 4 or self.r to the left
             # Handling 'A' Key
             temp = self.r
             temp2 = self.joint_4
