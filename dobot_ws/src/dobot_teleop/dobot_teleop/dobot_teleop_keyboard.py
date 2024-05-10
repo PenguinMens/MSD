@@ -30,7 +30,8 @@ class KeyboardTeleop(Node):
         # Define variables used by the node here, for example a simple counter
         self.i = 0
         self.key_pressed = (None,None,False)
-        self.cartisian = True
+        self.keys_pressed = []
+        self.cartisian = False
   
     def timer_callback(self):
         # To publish a message, you need to create the corresponding object first
@@ -40,28 +41,38 @@ class KeyboardTeleop(Node):
         if key[0] is not None:
             self.get_logger().info(f"key {key}")
             if(key[1] == 1):
-                self.key_pressed = (key[0],key[1],True)
-                msg.key = self.key_pressed[0]
-                msg.state = self.key_pressed[1]
-                msg.cartisian = self.cartisian 
+                exists  = False
+                for key_loop in self.keys_pressed:
+                    if key_loop[0] == key[0]:
+                        exists = True
+                if not exists:
+                    self.keys_pressed.append((key[0],key[1],True))
+
                 
                 #   self.publisher.publish(msg)
-                pass
+                
             if(key[1] == 0):
-                self.key_pressed = (key[0],key[1],False)
-                msg.key = self.key_pressed[0]
-                msg.state = self.key_pressed[1]
+                for key_loop in self.keys_pressed:
+                    if key_loop[0] == key[0]:
+                        self.keys_pressed.remove(key_loop)
+
+                        msg.key = key[0]
+                        msg.state = key[1]
+                        msg.cartisian = self.cartisian 
+                        self.publisher.publish(msg)
+
+        
+        for key in self.keys_pressed:   
+            self.get_logger().info(f"key {key}")
+            if(key[2] is True):
+                msg.key = key[0]
+                msg.state = key[1]
                 msg.cartisian = self.cartisian 
                 self.publisher.publish(msg)
-                
-        
-        if(self.key_pressed[2] is True ):
-            msg.key = self.key_pressed[0]
-            msg.state = self.key_pressed[1]
-            msg.cartisian = self.cartisian 
-            self.publisher.publish(msg)
-            self.get_logger().info(f"key_pressed{self.key_pressed}")
+                self.get_logger().info(f"key_pressed{self.key_pressed}")
 
+        
+            
                         
     def action_callback(self):
         # To publish a message, you need to create the corresponding object first

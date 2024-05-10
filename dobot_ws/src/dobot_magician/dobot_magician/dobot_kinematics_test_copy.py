@@ -74,7 +74,8 @@ def inverse_kinematics(x, y, z, r) -> Tuple[float, float, float, float]:
     theta2 = math.degrees(alpha - math.acos(numerator/denominator))
     theta3 = math.degrees(math.asin(numeraor3/denominator3))
     theta4 = r - theta1
-
+    if theta2 - 0.00001 < 0 and theta2 + 0.00001 > 0:
+        theta2 = 0.0
     return theta1, theta2, theta3, theta4    
  
 # first = (0, 0, 0, 0)

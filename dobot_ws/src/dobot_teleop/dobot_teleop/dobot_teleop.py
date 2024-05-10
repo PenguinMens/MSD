@@ -32,12 +32,26 @@ class MyClassName(Node):
             'teleop_keyboard',
             self.listener_callback,
             10)
-        self.joint_1 = 0
+        self.timer = self.create_timer(0.01, self.timer_callback)
+        self.timer = self.create_timer(0.5, self.timer_callback2)
+        self.joint_1 = -90
         self.joint_2 = 0
         self.joint_3 = 0
         self.joint_4 = 0
         self.x, self.y,self.z,self.r = forward_kinematics_solution(
                 self.joint_1, self.joint_2, self.joint_3, self.joint_4)
+        # 0 means stay still 
+        # 
+        self.robot_state = {
+            "isCartisian": False,
+            "KEY_UP": 0,
+            "KEY_DOWN": 0,
+            "KEY_LEFT": 0,
+            "KEY_RIGHT": 0,
+        }
+        self.dobot.set_joint_ptp(-90,0,-15,-90)
+        self.keys_being_ppressed = []
+
 
     
 
@@ -46,175 +60,74 @@ class MyClassName(Node):
     def listener_callback(self, msg):
         dobot = self.dobot
         # Logger displays formatted text in the console, useful for simple debugging
-        ammount = 0.1
+        ammount = 1
         cartesianAmmount = 0.001
         key = msg.key
         state = msg.state
         isCartisian = msg.cartisian
         valid = False
-        self.get_logger().info(f"{msg}")
-        if state == 0:
-            dobot.stop_current_action()
-        elif key == 'KEY_A': # mvoing joint 4 or self.r to the left
-            # Handling 'A' Key
-            
-            self.get_logger().info(f"before {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
-            self.get_logger().info(f"before {self.x,self.y,self.z,self.r}")
-            temp = self.r
-            temp2 = self.joint_4
-            self.get_logger().info(f"going into isCartisian{isCartisian}")
-            if isCartisian:
-                self.get_logger().info(f"went into isCartisian{isCartisian}")
-                self.get_logger().info(f"CHECK {inverse_kinematics(self.x,self.y,self.z,self.r-cartesianAmmount)}")
-
-            
-            
-                self.get_logger().info(f"goal was valid")
-                self.r = self.r - ammount
+        #self.get_logger().info(f"BEFORE {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
+        if( state == 0):
+            self.get_logger().info(f"{key}")
+            self.dobot.stop_current_action()
+            self.joint_1,self.joint_2,self.joint_3,self.joint_4, = self.dobot.get_joint_state()
+            self.keys_being_ppressed = []
+        else:    
+            if key == "KEY_LEFT":
+                if key not in self.keys_being_ppressed:
+                    self.dobot.stop_current_action()
+                    self.joint_1,self.joint_2,self.joint_3,self.joint_4, = self.dobot.get_joint_state()
+                    self.keys_being_ppressed.append(key)
+                    
+                #self.get_logger().info(f"IN LEFT")
+                self.joint_1 = self.joint_1 - 1
+            if key == "KEY_RIGHT":
+                if key not in self.keys_being_ppressed:
+                    self.dobot.stop_current_action()
+                    self.joint_1,self.joint_2,self.joint_3,self.joint_4, = self.dobot.get_joint_state()
+                    self.keys_being_ppressed.append(key)
+                    
+                #self.get_logger().info(f"IN RIGHJT")
+                self.joint_1 = self.joint_1 + 1     
+            if key == "KEY_UP":
+                if key not in self.keys_being_ppressed:
+                    self.dobot.stop_current_action()
+                    self.joint_1,self.joint_2,self.joint_3,self.joint_4, = self.dobot.get_joint_state()
+                    self.keys_being_ppressed.append(key)
+                    self.joint_2 = self.joint_2 - 40
+                #self.get_logger().info(f"IN LEFT")
                 
-            else:
-                if(dobot.is_goal_valid(self.joint_1,self.joint_2,self.joint_3,self.joint_4-ammount)):
-                    self.joint_4 = self.joint_4 -  ammount
-            # if temp == self.r and temp2 == self.joint_4:
-            #     self.get_logger().info("Invalid goal")
-            # else:
-            #     valid = True
-            #     self.get_logger().info("Valid goal")
+                self.joint_2 = self.joint_2 - 1
+            if key == "KEY_DOWN":
+                if key not in self.keys_being_ppressed:
+                    self.dobot.stop_current_action()
+                    self.joint_1,self.joint_2,self.joint_3,self.joint_4, = self.dobot.get_joint_state()
+                    self.keys_being_ppressed.append(key)
+                        
+                #self.get_logger().info(f"IN RIGHJT")
                 
-        elif key == 'KEY_D': # moving joint 4 or self.r to the right
-            # Handling 'D' Key
-            temp = self.r
-            temp2 = self.joint_4
-            self.get_logger().info(f"{msg}")
 
-            if(isCartisian):
-                
-                self.r = self.r +  cartesianAmmount
-                if(self.r> RMAX):
-
-                    self.r = RMAX
-                
-            else:
-                if(dobot.is_goal_valid(self.joint_1,self.joint_2,self.joint_3,self.joint_4+ammount)):
-                    self.joint_4 = self.joint_4 +  ammount
-            # if temp == self.r and temp2 == self.joint_4:
-            #     self.get_logger().info("Invalid goal")
-            # else:
-            #     valid = True
-            #     self.get_logger().info("Valid goal")
-        
-        elif key == 'KEY_W': # moving joint 1 or self.z up
-            # Handling 'W' Key
-            temp = self.z
-            temp2 = self.joint_3
-
-            if(isCartisian):
-                self.get_logger().info(f"self.z was {self.z} and max is {ZMAX}")
-                self.z += cartesianAmmount
-                if self.z > ZMAX:
-                    self.z = ZMAX
-            else:
-                
-                self.joint_3 += ammount
-
-            # if temp == self.z and temp2 == self.joint_3:
-            #     self.get_logger().info("Invalid goal")
-            # else:
-            #     valid = True
-            #     self.get_logger().info("Valid goal")
-
-   
-
-        elif key == 'KEY_S': # moving joint 1 or self.z down
-            # Handling 'S' Key
-            temp = self.z
-            temp2 = self.joint_3
-            self.get_logger().info(f"before {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
-            self.get_logger().info(f"before {self.x,self.y,self.z,self.r}")
-            if(isCartisian):
-                
-                self.z = self.z-  cartesianAmmount
-                if self.z < ZMIN:
-                    self.z = ZMIN
-            else:
-                
-                self.joint_3 -= ammount
-            # if temp == self.z and temp2 == self.joint_3:
-            #     self.get_logger().info("Invalid goal")
-            # else:
-            #     valid = True
-            #     self.get_logger().info("Valid goal")
-        
-        elif key == 'KEY_UP':
-                # Handling 'UP_KEY' Key
-            temp = self.x
-            temp2 = self.joint_2   
-            if(isCartisian):
-                self.get_logger().info(f"BEFORE {self.x,self.y,self.z,self.r}")
-                self.get_logger().info(f"self.x was {self.x} and min is {XMIN}")
-                self.x += cartesianAmmount
-                if self.x >XMAX: 
-                    self.x = XMAX
-                self.get_logger().info(f"AFTER{self.x,self.y,self.z,self.r}")
-            else:
-                
-                    self.joint_2 += ammount
-
-
-        elif key == 'KEY_DOWN':
-            temp = self.x
-            temp2 = self.joint_2   
-            if(isCartisian):
-                self.get_logger().info(f"BEFORE {self.x,self.y,self.z,self.r}")
-                self.get_logger().info(f"self.x was {self.x} and max is {XMAX}")
-                self.x-= cartesianAmmount
-                if self.x <  XMIN:
-                    self.x = XMIN 
-                self.get_logger().info(f"AFTER{self.x,self.y,self.z,self.r}")
-            else:
-
-                self.joint_2 -= ammount
-    
-        elif key == 'KEY_LEFT':
-            if(isCartisian):
-                self.get_logger().info(f"BEFORE {self.x,self.y,self.z,self.r}")
-                self.get_logger().info(f"self.y was {self.y} and min is {YMIN}")
-                
-                self.y -= cartesianAmmount
-                if(self.y < YMAX):
-                    self.y = YMAX
-                self.get_logger().info(f"AFTER{self.x,self.y,self.z,self.r}")
-            else:
-                
-                    self.joint_1 -= ammount
-
-
-        elif key == 'KEY_RIGHT':  
-            if(isCartisian):
-                # self.get_logger().info(f"before {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
-                self.get_logger().info(f"BEFORE {self.x,self.y,self.z,self.r}")
-                self.get_logger().info(f"self.y was {self.y} and max is {YMIN}")
-                self.y += cartesianAmmount
-                if self.y > YMIN:
-                    self.y = YMIN
-                self.get_logger().info(f"AFTER{self.x,self.y,self.z,self.r}")
-            else:
-                
-                    self.joint_1 += ammount
-        
-
-        
-        if(isCartisian):
-            self.joint_1,self.joint_2,self.joint_3,self.joint_4 = inverse_kinematics(self.x,self.y,self.z,self.r)
-        elif valid:
-            self.x,self.y,self.z,self.r = forward_kinematics_solution(
-                self.joint_1, self.joint_2, self.joint_3, self.joint_4)
+                self.joint_2 = self.joint_2 + 1       
+        self.get_logger().info(f"{self.keys_being_ppressed}")
+                # valid = self.dobot.is_goal_valid(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
+        #self.get_logger().info(f"after {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
         # self.get_logger().info(f"after {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
         # self.get_logger().info(f"after {self.x,self.y,self.z,self.r}")
       
-        dobot.set_joint_ptp(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
+        #dobot.set_joint_ptp(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
 
-    
+    def timer_callback(self):
+        if(self.robot_state["KEY_LEFT"] == 1):
+            self.joint_1 = self.joint_1 - 0.1
+            
+        elif(self.robot_state["KEY_RIGHT"] == 1):
+            self.joint_1 = self.joint_1 + 0.1            
+        #self.joint_1 = self.joint_1 + 1
+        
+    def timer_callback2(self):
+        
+        
+        self.dobot.set_joint_ptp(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
 
 # The code below should be left as is
 def main(args=None):
