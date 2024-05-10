@@ -21,7 +21,7 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='student',
-    maintainer_email='20210915@student.curtin.edu.au',
+    maintainer_email='20210915@student.curtin.edu.au, 20181383@student.curtin.edu.au',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],

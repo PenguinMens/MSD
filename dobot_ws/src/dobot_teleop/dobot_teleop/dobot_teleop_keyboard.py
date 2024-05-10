@@ -26,7 +26,7 @@ class KeyboardTeleop(Node):
         timer_period = 0.01
         # The timer_callback function will be called every timer_period seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.action_timer = self.create_timer(timer_period, self.action_callback)
+        self.action_timer = self.create_timer(0.1, self.action_callback)
         # Define variables used by the node here, for example a simple counter
         self.i = 0
         self.key_pressed = (None,None,False)
@@ -41,6 +41,12 @@ class KeyboardTeleop(Node):
             self.get_logger().info(f"key {key}")
             if(key[1] == 1):
                 self.key_pressed = (key[0],key[1],True)
+                msg.key = self.key_pressed[0]
+                msg.state = self.key_pressed[1]
+                msg.cartisian = self.cartisian 
+                
+                #   self.publisher.publish(msg)
+                pass
             if(key[1] == 0):
                 self.key_pressed = (key[0],key[1],False)
                 msg.key = self.key_pressed[0]
@@ -55,10 +61,13 @@ class KeyboardTeleop(Node):
             msg.cartisian = self.cartisian 
             self.publisher.publish(msg)
             self.get_logger().info(f"key_pressed{self.key_pressed}")
+
                         
     def action_callback(self):
         # To publish a message, you need to create the corresponding object first
         # The name is the same as interface name (e.g., String or My_message)
+        
+
         pass
         
 
