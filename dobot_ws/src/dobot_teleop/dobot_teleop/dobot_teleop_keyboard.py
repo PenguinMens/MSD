@@ -39,7 +39,7 @@ class KeyboardTeleop(Node):
         msg = TeleopAction()
         key = self.kb.read_key()
         if key[0] is not None:
-            self.get_logger().info(f"key {key}")
+            #self.get_logger().info(f"key {key}")
             if(key[1] == 1):
                 exists  = False
                 for key_loop in self.keys_pressed:
@@ -63,13 +63,13 @@ class KeyboardTeleop(Node):
 
         
         for key in self.keys_pressed:   
-            self.get_logger().info(f"key {key}")
+            self.get_logger().info(f"key {self.keys_pressed}")
             if(key[2] is True):
                 msg.key = key[0]
                 msg.state = key[1]
                 msg.cartisian = self.cartisian 
                 self.publisher.publish(msg)
-                self.get_logger().info(f"key_pressed{self.key_pressed}")
+                #self.get_logger().info(f"key_pressed{self.key_pressed}")
 
         
             

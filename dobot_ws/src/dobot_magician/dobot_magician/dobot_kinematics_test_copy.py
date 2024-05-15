@@ -55,6 +55,7 @@ def inverse_kinematics(x, y, z, r) -> Tuple[float, float, float, float]:
     L3 = 0.147
     L4 = 0.060
     L5 = 0.070 
+    #print(f"doing iverse on pose x,y,z,r {x}{y}{z}{r}")
     # Calculate the inverse kinematics
     d = np.sqrt(x**2 + y**2) - L4
     h = z + L5 - L0 - L1
@@ -67,9 +68,9 @@ def inverse_kinematics(x, y, z, r) -> Tuple[float, float, float, float]:
     denominator3 = 2 * L2 * L3
     division3 = numeraor3/denominator3
     if(division > 1 or division < -1 or division3 > 1 or division3 < -1):
-        #raise OutOfBoundsException
+        raise Exception
         print("The division is out of range")
-        
+    #print(f"numerator/denominator {numerator}/{denominator} {numerator/denominator}")
     theta1 = math.degrees(math.atan2(y,x))
     theta2 = math.degrees(alpha - math.acos(numerator/denominator))
     theta3 = math.degrees(math.asin(numeraor3/denominator3))
@@ -94,7 +95,7 @@ def inverse_kinematics(x, y, z, r) -> Tuple[float, float, float, float]:
 # second_reverse = dobot_Kinematics.inverse_kinematics(*second_solution)
 # print("Second: ", second)
 # print("First solution:", first_solution)
-# print("Second solution:", second_solution)
+# print("Second solution:", second_solutpick_goalion)
 
 # third_solution = dobot_Kinematics.forward_kinematics_solution(*third)
 # third_reverse = dobot_Kinematics.inverse_kinematics(*third_solution)
