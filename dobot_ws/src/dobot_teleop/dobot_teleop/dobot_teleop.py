@@ -1,4 +1,5 @@
 # The following imports are necessary
+import math
 import rclpy
 from rclpy.node import Node
 
@@ -29,6 +30,16 @@ YCOL2 = -0.201
 YCOL3 = -0.171
 YCOL = [YCOL1,YCOL2,YCOL3]
 
+pick_pose_list = [(XROW[0],YCOL[0],BOTTOM,0),(XROW[0],YCOL[1],BOTTOM,0),(XROW[0],YCOL[2],BOTTOM,0),
+                  (XROW[1],YCOL[0],BOTTOM,0),(XROW[1],YCOL[1],BOTTOM,0),(XROW[1],YCOL[2],BOTTOM,0),
+                  (XROW[2],YCOL[0],BOTTOM,0),(XROW[2],YCOL[1],BOTTOM,0),(XROW[2],YCOL[2],BOTTOM,0)]
+place_pose_list = [(0.135,0.226,BOTTOM,0),(0.100,0.226,BOTTOM,0),(0.065,0.226,BOTTOM,0),(0.030,0.226,BOTTOM,0),
+                    (0.120,0.226,BOTTOM*2,0),(0.087,0.226,BOTTOM*2,0),(0.055,0.226,BOTTOM*2,0),
+                            (0.100,0.226,BOTTOM*3,0),(0.065,0.226,BOTTOM*3,0)
+                ]
+
+# want to have a pick and place struct
+
 
 class MyClassName(Node):
 
@@ -42,9 +53,9 @@ class MyClassName(Node):
             'teleop_keyboard',
             self.listener_callback,
             10)
-        self.timer = self.create_timer(0.01, self.timer_callback)
+        self.timer = self.create_timer(2, self.timer_callback)
         self.timer = self.create_timer(0.3, self.timer_callback2)
-        self.joint_1 = -90
+        self.joint_1 = 0
         self.joint_2 = 0
         self.joint_3 = 0
         self.joint_4 = 0
@@ -52,6 +63,7 @@ class MyClassName(Node):
                 self.joint_1, self.joint_2, self.joint_3, self.joint_4)
         # 0 means stay still 
         # 
+        self.is_home = False
         self.robot_state = {
             "isCartisian": False,
             "KEY_UP": 0,
@@ -59,13 +71,13 @@ class MyClassName(Node):
             "KEY_LEFT": 0,
             "KEY_RIGHT": 0,
         }
-        self.dobot.set_joint_ptp(-90,0,-15,-90)
+        self.dobot_instructions = []
         self.dobot_suction = False
         self.cartisian_mode = False
         self.is_homing =False
         self.is_auto = False
         self.keys_being_ppressed = []
-
+        self.i = 0
 
     
 
@@ -73,6 +85,7 @@ class MyClassName(Node):
     # Listener callback function will be called every time a message is published on the topic this node is subscribed to
     def listener_callback(self, msg):
         dobot = self.dobot
+        
         # Logger displays formatted text in the console, useful for simple debugging
         ammount = 1
         cartesianAmmount = 0.001
@@ -101,6 +114,10 @@ class MyClassName(Node):
                 self.cartisian_mode = not self.cartisian_mode
             if key == "KEY_H":
                 self.dobot.start_homing()
+            if key == "KEY_F5":
+                self.i = 0
+                self.is_auto = True
+                self.dobot.set_joint_ptp(0,0,0,0)
         else:    
             if key == "KEY_LEFT":
                 if key not in self.keys_being_ppressed:
@@ -180,8 +197,7 @@ class MyClassName(Node):
                     
                 if self.dobot_suction == True:
                     self.dobot.set_suction_cup(False)
-            if key == "KEY_F5":
-                self.auto_stack()
+
                     
         self.get_logger().info(f"{self.keys_being_ppressed}")
                 # valid = self.dobot.is_goal_valid(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
@@ -192,6 +208,26 @@ class MyClassName(Node):
         #dobot.set_joint_ptp(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
 
     def timer_callback(self):
+        #print(f"is auto is tes {self.is_auto}")0
+        if(self.is_auto):
+            temp = self.dobot.get_joint_state() 
+            #print(self.dobot.get_joint_state())
+            temp_check = True
+            for joint in temp:
+                if int(joint) != 0:
+                    temp_check = False
+            if(temp_check ):
+                self.is_home = True
+                if(self.i < 9):
+                    self.auto_stack(self.i)
+                self.i = self.i + 1
+                
+            else:
+                self.is_home = False
+            if(self.i > 8 and self.is_home == True):
+                print("is auto is false")
+                self.is_auto = False
+        
         # if(self.robot_state["KEY_LEFT"] == 1):
         #     self.joint_1 = self.joint_1 - 0.1
             
@@ -219,8 +255,9 @@ class MyClassName(Node):
                 self.joint_1, self.joint_2, self.joint_3, self.joint_4)
     
         
-    def auto_stack(self):
+    def auto_stack(self,i):
         self.is_auto = True
+        self.is_home = False
         dobot = self.dobot
         # Logger displays formatted text in the console, useful for simple debugging
         #self.get_logger().info(f"Incoming request\na: {a}, b: {b}")
@@ -228,35 +265,38 @@ class MyClassName(Node):
 
 
         # do 2d translation first which is x and y diretion at once, then do z direction
+
         home_goal = [0,0,0,0]
         home_pose = forward_kinematics_solution(*home_goal)
-        i = 0
-        place_pose_list = [(0.135,0.226,BOTTOM,0),(0.105,0.226,BOTTOM,0),(0.075,0.226,BOTTOM,0),(0.045,0.226,BOTTOM,0),
-                            (0.120,0.226,BOTTOM*2,0),(0.090,0.226,BOTTOM*2,0),(0.060,0.226,BOTTOM*2,0),
-                                    (0.105,0.226,BOTTOM*3,0),(0.075,0.226,BOTTOM*3,0)
-                       ]
-        for x in XROW:
-            for y in YCOL:
-                
-                pick_pose = (x,y,0.023,0)
-                place_pose = place_pose_list[i]
-                print(f"getting pick {pick_pose} to place {place_pose}")
-                pick_goal = inverse_kinematics(*pick_pose)
-                
-                dobot.set_joint_ptp(*(inverse_kinematics(x, y,home_pose[2], 0)))
-                # do z direction
-                dobot.set_suction_cup(True)
-                dobot.set_joint_ptp(*pick_goal)
+        
+        pick_pose = pick_pose_list[i]
+        place_pose = place_pose_list[i]
+        x= pick_pose[0]
+        y= pick_pose[1]
+        print(f"getting pick {pick_pose} to place {place_pose} block {i}")
+        pick_goal = inverse_kinematics(*pick_pose)
+        
+        #dobot.set_joint_ptp(*(inverse_kinematics(x, y,home_pose[2], 0)))
+        # do z direction
+        dobot.set_suction_cup(True)
+        dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.01, 0)))
+        # dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.005, 0)))
+        dobot.set_joint_ptp(*pick_goal)
 
-                dobot.set_joint_ptp(*(inverse_kinematics(pick_pose[0],pick_pose[1] , home_pose[2], place_pose[3])))
-                dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] , home_pose[2], place_pose[3])))
-                place_goal = inverse_kinematics(*place_pose)
-                dobot.set_joint_ptp(*place_goal)
-                dobot.set_suction_cup(False)
-                dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] , home_pose[2], place_pose[3])))
-                dobot.set_joint_ptp(0,0,0,0)
-                i = i + 1
-        self.is_auto = False
+        dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.01, 0)))
+        dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.05, 0)))
+        #dobot.set_joint_ptp(*(inverse_kinematics(pick_pose[0],pick_pose[1] , home_pose[2], place_pose[3])))
+        # dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] , home_pose[2], place_pose[3])))
+        dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] ,place_pose[2]+0.005, place_pose[3])))
+        place_goal = inverse_kinematics(*place_pose)
+        dobot.set_suction_cup(False)
+
+        # dobot.set_joint_ptp(*place_goal)
+        
+        dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] , home_pose[2], place_pose[3])))
+        dobot.set_joint_ptp(0,0,0,0)
+       
+        
 
 # The code below should be left as is
 def main(args=None):
