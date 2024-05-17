@@ -76,6 +76,7 @@ class MyClassName(Node):
         self.cartisian_mode = False
         self.is_homing =False
         self.is_auto = False
+        self.is_asterix = False
         self.keys_being_ppressed = []
         self.i = 0
 
@@ -94,19 +95,27 @@ class MyClassName(Node):
         isCartisian = msg.cartisian
         valid = False
         #self.get_logger().info(f"BEFORE {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
-        self.get_logger().info(f"{self.cartisian_mode}")
+        self.get_logger().info(f"self.is_auto{self.is_auto}")
         if self.is_homing:
+
             return
         if self.is_auto:
+            if key == "KEY_H":
+                self.reset_robot()
             print("auto so skipping")
+            return
+        if self.is_asterix:
+            self.get_logger().info(f"skipping keyboard inpute")
+            if key == "KEY_KPASTERISK" and state == 0:
+                self.get_logger().info(f"making it asterix false")
+                self.is_asterix = False
             return
         if( state == 0):
 
             self.get_logger().info(f"{msg}")
-            if key != "KEY_F5" and key != "KEY_H":
-                print("GOES HERE")
-                self.dobot.stop_current_action()
-                self.joint_1,self.joint_2,self.joint_3,self.joint_4, = self.dobot.get_joint_state()
+            if key != "KEY_F5" and key != "KEY_H" and key != "KEY_KPASTERISK" :  
+
+                self.reset_robot()
                 self.keys_being_ppressed = []
             if key == "KEY_E":
                 self.dobot_suction = not self.dobot_suction
@@ -118,6 +127,9 @@ class MyClassName(Node):
                 self.i = 0
                 self.is_auto = True
                 self.dobot.set_joint_ptp(0,0,0,0)
+            if key == "KEY_KPASTERISK":
+                if(self.is_asterix == False):
+                    self.is_asterix = True
         else:    
             if key == "KEY_LEFT":
                 if key not in self.keys_being_ppressed:
@@ -160,7 +172,7 @@ class MyClassName(Node):
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
                 if self.cartisian_mode:
-                    self.z + self.z -cartesianAmmount
+                    self.z = self.z -cartesianAmmount
                 else:
                     self.joint_3 = self.joint_3 - 1
             if key == "KEY_W":
@@ -179,7 +191,7 @@ class MyClassName(Node):
                     
                     self.keys_being_ppressed.append(key)
                 if self.cartisian_mode:
-                    self.r = self.r - cartesianAmmount
+                    self.r = self.r - 1
                 else:
                     self.joint_4 = self.joint_4 - 1
             if key == "KEY_D":
@@ -187,7 +199,7 @@ class MyClassName(Node):
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
                 if self.cartisian_mode:
-                    self.r = self.r + cartesianAmmount
+                    self.r = self.r + 1
                 else:
                     self.joint_4 = self.joint_4 + 1
 
@@ -247,7 +259,8 @@ class MyClassName(Node):
         else:
             self.x, self.y,self.z,self.r = forward_kinematics_solution(
                 self.joint_1, self.joint_2, self.joint_3, self.joint_4)
-        self.dobot.set_joint_ptp(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
+        if(not self.is_homing and not self.is_auto):
+            self.dobot.set_joint_ptp(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
     def reset_robot(self):
         self.dobot.stop_current_action()
         self.joint_1,self.joint_2,self.joint_3,self.joint_4, = self.dobot.get_joint_state()
@@ -276,7 +289,7 @@ class MyClassName(Node):
         print(f"getting pick {pick_pose} to place {place_pose} block {i}")
         pick_goal = inverse_kinematics(*pick_pose)
         
-        #dobot.set_joint_ptp(*(inverse_kinematics(x, y,home_pose[2], 0)))
+        dobot.set_joint_ptp(*(inverse_kinematics(x, y,home_pose[2], 0)))
         # do z direction
         dobot.set_suction_cup(True)
         dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.01, 0)))
@@ -286,9 +299,9 @@ class MyClassName(Node):
         dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.01, 0)))
         dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.05, 0)))
         #dobot.set_joint_ptp(*(inverse_kinematics(pick_pose[0],pick_pose[1] , home_pose[2], place_pose[3])))
-        # dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] , home_pose[2], place_pose[3])))
+        dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] , home_pose[2], place_pose[3])))
         dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] ,place_pose[2]+0.005, place_pose[3])))
-        place_goal = inverse_kinematics(*place_pose)
+       
         dobot.set_suction_cup(False)
 
         # dobot.set_joint_ptp(*place_goal)
