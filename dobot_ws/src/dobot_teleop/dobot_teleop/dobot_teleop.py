@@ -20,7 +20,7 @@ from dobot_magician.dobot_kinematics_test_copy import forward_kinematics_solutio
 XMIN,YMIN,ZMIN,RMIN = forward_kinematics_solution(90,70,40,90) 
 XMAX,YMAX,ZMAX,RMAX= forward_kinematics_solution(-90,0,-15,-90)
 XMAX = forward_kinematics_solution(0,70,-15,-90)[0]
-BOTTOM = 0.023
+BOTTOM = 0.020
 XROW1 = 0.062
 XROW2 = 0.092
 XROW3 = 0.122
@@ -102,6 +102,7 @@ class MyClassName(Node):
         if self.is_auto:
             if key == "KEY_H":
                 self.reset_robot()
+                self.is_auto = False
             print("auto so skipping")
             return
         if self.is_asterix:
@@ -239,7 +240,7 @@ class MyClassName(Node):
             if(self.i > 8 and self.is_home == True):
                 print("is auto is false")
                 self.is_auto = False
-        
+        if(self.is_homing)
         # if(self.robot_state["KEY_LEFT"] == 1):
         #     self.joint_1 = self.joint_1 - 0.1
             
@@ -269,7 +270,7 @@ class MyClassName(Node):
     
         
     def auto_stack(self,i):
-        self.is_auto = True
+        
         self.is_home = False
         dobot = self.dobot
         # Logger displays formatted text in the console, useful for simple debugging
@@ -297,7 +298,7 @@ class MyClassName(Node):
         dobot.set_joint_ptp(*pick_goal)
 
         dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.01, 0)))
-        dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.05, 0)))
+        dobot.set_joint_ptp(*(inverse_kinematics(x, y, home_pose[2], 0)))
         #dobot.set_joint_ptp(*(inverse_kinematics(pick_pose[0],pick_pose[1] , home_pose[2], place_pose[3])))
         dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] , home_pose[2], place_pose[3])))
         dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] ,place_pose[2]+0.005, place_pose[3])))
