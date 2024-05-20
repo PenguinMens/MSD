@@ -1,13 +1,17 @@
-from keyboard import Keyboard
-import time
+center_x = 0.092
+center_y = -0.201
+block_size = 0.025
+gap = 0.005
 
-kb = Keyboard()
+# Define the offsets for the blocks relative to the center block
+offsets = [
+    (0, 0),     # Center block
+    (-1, 1), (0, 1), (1, 1),
+    (-1, 0),          (1, 0),
+    (-1, -1), (0, -1), (1, -1)
+]
 
-# monitor key presses at 100 Hz
-while True:
-    key = kb.read_key()
+# Calculate the coordinates for each block
+pick_pose = [(center_x + offset[0] * (block_size + gap), center_y + offset[1] * (block_size + gap)) for offset in offsets]
 
-    if not key == (None, None):
-        print(f"{key}")
-
-    time.sleep(0.01)
+print("pick_pose =", pick_pose)

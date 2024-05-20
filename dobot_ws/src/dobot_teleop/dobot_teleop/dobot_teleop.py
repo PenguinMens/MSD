@@ -20,7 +20,7 @@ from dobot_magician.dobot_kinematics_test_copy import forward_kinematics_solutio
 XMIN,YMIN,ZMIN,RMIN = forward_kinematics_solution(90,70,40,90) 
 XMAX,YMAX,ZMAX,RMAX= forward_kinematics_solution(-90,0,-15,-90)
 XMAX = forward_kinematics_solution(0,70,-15,-90)[0]
-BOTTOM = 0.020
+BOTTOM = 0.019
 XROW1 = 0.062
 XROW2 = 0.092
 XROW3 = 0.122
@@ -30,12 +30,42 @@ YCOL2 = -0.201
 YCOL3 = -0.171
 YCOL = [YCOL1,YCOL2,YCOL3]
 
-pick_pose_list = [(XROW[0],YCOL[0],BOTTOM,0),(XROW[0],YCOL[1],BOTTOM,0),(XROW[0],YCOL[2],BOTTOM,0),
-                  (XROW[1],YCOL[0],BOTTOM,0),(XROW[1],YCOL[1],BOTTOM,0),(XROW[1],YCOL[2],BOTTOM,0),
-                  (XROW[2],YCOL[0],BOTTOM,0),(XROW[2],YCOL[1],BOTTOM,0),(XROW[2],YCOL[2],BOTTOM,0)]
-place_pose_list = [(0.135,0.226,BOTTOM,0),(0.100,0.226,BOTTOM,0),(0.065,0.226,BOTTOM,0),(0.030,0.226,BOTTOM,0),
-                    (0.120,0.226,BOTTOM*2,0),(0.087,0.226,BOTTOM*2,0),(0.055,0.226,BOTTOM*2,0),
-                            (0.100,0.226,BOTTOM*3,0),(0.065,0.226,BOTTOM*3,0)
+center_x = 0.092
+center_y = -0.201
+block_size = 0.025
+gap = 0.005
+
+# Define the offsets for the blocks relative to the center block
+offsets = [
+    (0, 0),     # Center block
+    (-1, 1), (0, 1), (1, 1),
+    (-1, 0),          (1, 0),
+    (-1, -1), (0, -1), (1, -1)
+]
+
+# Calculate the coordinates for each block
+pick_pose_list = [(center_x + offset[0] * (block_size + gap), center_y + offset[1] * (block_size + gap), BOTTOM,0) for offset in offsets]
+
+
+
+# pick_pose_list = [(XROW[0],YCOL[0],BOTTOM,0),(XROW[0],YCOL[1],BOTTOM,0),(XROW[0],YCOL[2],BOTTOM,0),
+#                   (XROW[1],YCOL[0],BOTTOM,0),(XROW[1],YCOL[1],BOTTOM,0),(XROW[1],YCOL[2],BOTTOM,0),
+#                   (XROW[2],YCOL[0],BOTTOM,0),(XROW[2],YCOL[1],BOTTOM,0),(XROW[2],YCOL[2],BOTTOM,0)]
+
+
+
+place_pose_list = []
+# for i in range(9):
+#     if i < 4:
+#         place_pose_list.append((0.135 -  i * 0.031 ,0.226,BOTTOM+0.003,0))
+#     elif i > 3 and i < 7:
+#         place_pose_list.append((0.120 -  (i - 4) * 0.031 ,0.226,BOTTOM+BOTTOM + 0.003,0))
+#     else:
+#         place_pose_list.append((0.105 -  (i - 8) * 0.031 ,0.226,BOTTOM+BOTTOM + BOTTOM + 0.003,0))
+BOTTOM_PLACE = BOTTOM + 0.002
+place_pose_list = [(0.135,0.226,BOTTOM_PLACE,0),(0.105,0.226,BOTTOM_PLACE,0),(0.075,0.226,BOTTOM_PLACE,0),(0.045,0.226,BOTTOM_PLACE,0),
+                        (0.120,0.226,BOTTOM_PLACE*2,0),(0.090,0.226,BOTTOM_PLACE*2,0),(0.060,0.226,BOTTOM_PLACE*2,0),
+                               (0.105,0.226,BOTTOM_PLACE*3,0),(0.075,0.226,BOTTOM_PLACE*3,0)
                 ]
 
 # want to have a pick and place struct
@@ -59,10 +89,14 @@ class MyClassName(Node):
         self.joint_2 = 0
         self.joint_3 = 0
         self.joint_4 = 0
+        
         self.x, self.y,self.z,self.r = forward_kinematics_solution(
                 self.joint_1, self.joint_2, self.joint_3, self.joint_4)
         # 0 means stay still 
         # 
+
+        self.get_logger().info(f"se{pick_pose_list}")
+        self.get_logger().info(f"se{place_pose_list}")
         self.is_home = False
         self.robot_state = {
             "isCartisian": False,
@@ -71,6 +105,11 @@ class MyClassName(Node):
             "KEY_LEFT": 0,
             "KEY_RIGHT": 0,
         }
+        
+        # first_block = (center_x, center_y,0.01, 0)
+        # self.joint_1,self.joint_2,self.joint_3,self.joint_4  = inverse_kinematics(*first_block)
+        
+
         self.dobot_instructions = []
         self.dobot_suction = False
         self.cartisian_mode = False
@@ -89,13 +128,13 @@ class MyClassName(Node):
         
         # Logger displays formatted text in the console, useful for simple debugging
         ammount = 1
-        cartesianAmmount = 0.001
+        cartesianAmmount = 0.0001
         key = msg.key
         state = msg.state
         isCartisian = msg.cartisian
         valid = False
         #self.get_logger().info(f"BEFORE {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
-        self.get_logger().info(f"self.is_auto{self.is_auto}")
+        # self.get_logger().info(f"self.is_auto{self.is_auto}")
         if self.is_homing:
 
             return
@@ -103,10 +142,10 @@ class MyClassName(Node):
             if key == "KEY_H":
                 self.reset_robot()
                 self.is_auto = False
-            print("auto so skipping")
+
             return
         if self.is_asterix:
-            self.get_logger().info(f"skipping keyboard inpute")
+            # self.get_logger().info(f"skipping keyboard inpute")
             if key == "KEY_KPASTERISK" and state == 0:
                 self.get_logger().info(f"making it asterix false")
                 self.is_asterix = False
@@ -192,6 +231,7 @@ class MyClassName(Node):
                     
                     self.keys_being_ppressed.append(key)
                 if self.cartisian_mode:
+                    
                     self.r = self.r - 1
                 else:
                     self.joint_4 = self.joint_4 - 1
@@ -212,7 +252,7 @@ class MyClassName(Node):
                     self.dobot.set_suction_cup(False)
 
                     
-        self.get_logger().info(f"{self.keys_being_ppressed}")
+        # self.get_logger().info(f"{self.keys_being_ppressed}")
                 # valid = self.dobot.is_goal_valid(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
         #self.get_logger().info(f"after {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
         # self.get_logger().info(f"after {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
@@ -238,25 +278,31 @@ class MyClassName(Node):
             else:
                 self.is_home = False
             if(self.i > 8 and self.is_home == True):
-                print("is auto is false")
+
                 self.is_auto = False
-        if(self.is_homing)
+        if(self.is_homing):
         # if(self.robot_state["KEY_LEFT"] == 1):
         #     self.joint_1 = self.joint_1 - 0.1
             
         # elif(self.robot_state["KEY_RIGHT"] == 1):
         #     self.joint_1 = self.joint_1 + 0.1            
         #self.joint_1 = self.joint_1 + 1
-        pass
+            pass
         
     def timer_callback2(self):
         
         if self.cartisian_mode:
             try:
                 self.joint_1, self.joint_2, self.joint_3, self.joint_4 = inverse_kinematics(self.x, self.y,self.z,self.r)
+                #self.get_logger().info(f"{e}")
+                if(not self.dobot.is_goal_valid(self.joint_1, self.joint_2, self.joint_3, self.joint_4 )):
+                    self.reset_robot()
+                # self.get_logger().info(f"{self.x, self.y,self.z,self.r}")
+                # self.get_logger().info(f"{ }")
             except Exception as e:
+                self.get_logger().info(f"{e}")
                 self.reset_robot()
-                print(e)
+        
         else:
             self.x, self.y,self.z,self.r = forward_kinematics_solution(
                 self.joint_1, self.joint_2, self.joint_3, self.joint_4)
@@ -270,7 +316,7 @@ class MyClassName(Node):
     
         
     def auto_stack(self,i):
-        
+
         self.is_home = False
         dobot = self.dobot
         # Logger displays formatted text in the console, useful for simple debugging
@@ -287,7 +333,7 @@ class MyClassName(Node):
         place_pose = place_pose_list[i]
         x= pick_pose[0]
         y= pick_pose[1]
-        print(f"getting pick {pick_pose} to place {place_pose} block {i}")
+
         pick_goal = inverse_kinematics(*pick_pose)
         
         dobot.set_joint_ptp(*(inverse_kinematics(x, y,home_pose[2], 0)))
@@ -297,12 +343,14 @@ class MyClassName(Node):
         # dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.005, 0)))
         dobot.set_joint_ptp(*pick_goal)
 
+        # dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.005, 0)))
         dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.01, 0)))
+        dobot.set_joint_ptp(*(inverse_kinematics(x, y,pick_pose[2]+0.025, 0)))
         dobot.set_joint_ptp(*(inverse_kinematics(x, y, home_pose[2], 0)))
         #dobot.set_joint_ptp(*(inverse_kinematics(pick_pose[0],pick_pose[1] , home_pose[2], place_pose[3])))
         dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] , home_pose[2], place_pose[3])))
         dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] ,place_pose[2]+0.005, place_pose[3])))
-       
+        dobot.set_joint_ptp(*(inverse_kinematics(place_pose[0],place_pose[1] ,place_pose[2]+0.001, place_pose[3])))
         dobot.set_suction_cup(False)
 
         # dobot.set_joint_ptp(*place_goal)

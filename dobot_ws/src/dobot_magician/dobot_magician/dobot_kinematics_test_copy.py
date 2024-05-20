@@ -18,7 +18,7 @@ def forward_kinematics_solution(th1, th2, th3, th4):
         
         
         """
-        r = np.deg2rad(th1 + th4)
+        r = th1 + th4
         th1 = np.deg2rad(th1)
         th2 = np.deg2rad(th2)
         th3 = np.deg2rad(th3)

@@ -28,7 +28,7 @@ class DobotState(Node):
         self.publisher = self.create_publisher(JointState, 'dobot_state', 10)
         self.publisher2 = self.create_publisher(Pose, 'dobot_pose', 10)
         # Publishers typically publish message at a predefined rate
-        timer_period = 0.5
+        timer_period = 0.2
         # The timer_callback function will be called every timer_period seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.timer2 = self.create_timer(0.2, self.timer2_callback)
