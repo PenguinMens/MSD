@@ -129,9 +129,11 @@ class MyClassName(Node):
         # Logger displays formatted text in the console, useful for simple debugging
         ammount = 1
         cartesianAmmount = 0.0001
+        cartesianAmmountBIG = 0.01
         key = msg.key
         state = msg.state
         isCartisian = msg.cartisian
+
         valid = False
         #self.get_logger().info(f"BEFORE {self.joint_1,self.joint_2,self.joint_3,self.joint_4}")
         # self.get_logger().info(f"self.is_auto{self.is_auto}")
@@ -175,6 +177,8 @@ class MyClassName(Node):
                 if key not in self.keys_being_ppressed:
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
+                    if self.cartisian_mode:
+                        self.y = self.y -cartesianAmmountBIG
                 if self.cartisian_mode:
                     self.y = self.y -cartesianAmmount
                 else:
@@ -184,6 +188,8 @@ class MyClassName(Node):
                 if key not in self.keys_being_ppressed:
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
+                    if self.cartisian_mode:
+                        self.y = self.y + cartesianAmmountBIG
                 if self.cartisian_mode:
                     self.y = self.y + cartesianAmmount
                 else:
@@ -192,7 +198,8 @@ class MyClassName(Node):
                 if key not in self.keys_being_ppressed:
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
-                    
+                    if self.cartisian_mode:
+                        self.x = self.x + cartesianAmmountBIG
                 if self.cartisian_mode:
                     self.x = self.x + cartesianAmmount
                 else:
@@ -203,6 +210,8 @@ class MyClassName(Node):
                 if key not in self.keys_being_ppressed:
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
+                    if self.cartisian_mode:
+                        self.x = self.x + cartesianAmmountBIG
                 if self.cartisian_mode:
                     self.x = self.x - cartesianAmmount
                 else:
@@ -211,34 +220,41 @@ class MyClassName(Node):
                 if key not in self.keys_being_ppressed:
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
+                    if self.cartisian_mode:
+                        self.z = self.z - cartesianAmmountBIG
                 if self.cartisian_mode:
-                    self.z = self.z -cartesianAmmount
+                    self.z = self.z - cartesianAmmount
                 else:
                     self.joint_3 = self.joint_3 - 1
             if key == "KEY_W":
                 if key not in self.keys_being_ppressed:
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
+                    if self.cartisian_mode:
+                        self.z = self.z + cartesianAmmountBIG
                 if self.cartisian_mode:
                     self.z = self.z + cartesianAmmount
                 else:
                     self.joint_3 = self.joint_3 + 1
 
-
             if key == "KEY_A":
                 if key not in self.keys_being_ppressed:
                     self.reset_robot()
-                    
                     self.keys_being_ppressed.append(key)
+                    if self.cartisian_mode:
+                        self.r = self.r - 10
                 if self.cartisian_mode:
                     
                     self.r = self.r - 1
                 else:
                     self.joint_4 = self.joint_4 - 1
+
             if key == "KEY_D":
                 if key not in self.keys_being_ppressed:
                     self.reset_robot()
                     self.keys_being_ppressed.append(key)
+                    if self.cartisian_mode:
+                        self.r = self.r + 10
                 if self.cartisian_mode:
                     self.r = self.r + 1
                 else:
@@ -259,7 +275,9 @@ class MyClassName(Node):
         # self.get_logger().info(f"after {self.x,self.y,self.z,self.r}")
       
         #dobot.set_joint_ptp(self.joint_1,self.joint_2,self.joint_3,self.joint_4)
+    def add_cartisian(self):
 
+        pass
     def timer_callback(self):
         #print(f"is auto is tes {self.is_auto}")0
         if(self.is_auto):
